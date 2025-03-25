@@ -109,11 +109,13 @@ def generate_graph(input_file=None, output_file=None):
 
     # Adjust layout and display
     plt.tight_layout()
-    plt.show()
-
-    # Save the figure
+    
+    # Save the figure first
     plt.savefig(output_file, dpi=CONFIG['dpi'], bbox_inches='tight')
     print(f"Graph saved to {output_file}")
+    
+    # Show the figure
+    plt.show()
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Generate graphs from Trustpilot review data')
