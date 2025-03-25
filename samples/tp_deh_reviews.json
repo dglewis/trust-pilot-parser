@@ -1,0 +1,1101 @@
+{
+  "metadata": {
+    "total_reviews": 52,
+    "extracted_date": "2025-03-25T11:28:26",
+    "version": "2.0"
+  },
+  "reviews": [
+    {
+      "stars": 5,
+      "title": "Excellent Experience with the RADE Program for Data and AWS Learning",
+      "text": "The RADE program offers a well-designed curriculum for individuals interested in Data and AWS, regardless of their experience level. The program's standout feature is its hands-on hackathon sessions, which provide practical experience with AWS services. It covers a comprehensive range of industry-relevant AWS services, making it suitable for those seeking career transitions, staying current with technology, or learning from scratch. Sachin has real-world expertise and makes complex concepts easy to grasp.\n\nThroughout the course, bootcamps, and live sessions, the instructor provides valuable insights on interview techniques and in-depth explanations of essential skills. Highly recommend this course to everyone wants to improve knowledge or upskill in AWS data engineering",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-16T04:06:45.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Delightful course",
+      "text": "In short in one word :'Delighted'.This course is extremely well structured. I work as a service delivery lead handling primarily erp projects. I was also asked to handle an aws data engineering project. I wanted to understand more on aws. I had seen some feedback on Sachin course and took a leap of faith.\nThe biggest validation that I received was when I was able to recommend some performance improvements using step functions. From preparing PPT for clients t presentations to providing feedback on saving cloud costs was a big win win. The customer who was so used to me presenting slides on where we stand during the steering committee meetings was surprised when I along with my team proposed various cost saving mechanism. I would say jump into this course. The knowledge that you will get when other folks pitch in their experience is second to none. Worth every rupee.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-15T19:10:06.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Thoughtfully structured program, no prior AWS experience required!",
+      "text": "The RADE program is thoughtfully structured for anyone having interest in Data & AWS, doesn't require years of experience. I really like the hackathon sessions where we do the hands on on AWS services. Most of the relevant AWS services which are currently being used in the industry are covered this makes it easy for someone who is looking for a transition or wanting to stay up-to-date or even learn from scratch. All throughout the course, hackathon/bootcamp and live sessions, Sachin gives tips and tricks on how to crack interviews & providing in depth understanding of necessary skills! Once you join the program, you are also a part of community in WhatsApp group where we have support from each other and brainstorm ideas!",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-11T21:29:38.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "AWS DE Journey with Sachin",
+      "text": "Skill and real-time project experience cannot be earned; it's achieved by trying different projects with all possible edge scenarios. RADE is not just a program; it’s a real-time big solution that understands the data flow. Discussing with my mentor and going through the real game of data engineering concepts is tough; however, it can be achieved by having Sachin at your side and discussing with you.\nWorking in a real project and understanding the data ecosystem is always challenging without understanding all the AWS data engineering concepts. You need to work on each service like s3, glue, Redshift, lambda, Athena, Fargate, EMR, SNS, and SQS to give the best solution with perspective of cost and time. I wanted to take a moment to express my heartfelt thanks to Sachin for your incredible guidance and support throughout the real-time project. Being clear on the topics one by one & carrying out the hackathon as a team is awesome. Your experience and insights have been invaluable, and they have truly shaped my understanding and given another perspective and insight to approach the challenges in a practical, real AWS data world context.\nThis is an incredible journey. Thanks for being a mentor and true Friend. I highly recommend his RADE program to all AWS data engineers and leads.\nRegards,\nManoj.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-09T16:59:21.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "When my company transitioned to AWS",
+      "text": "When my company transitioned to AWS, I had little knowledge of the platform, especially regarding data engineering services. While searching for resources on LinkedIn, I discovered a Sachin whose course turned out to be a game-changer .\nThe course provided extensive knowledge of essential AWS services for data engineering, such as Amazon S3, AWS Glue, Amazon Redshift, and Amazon EMR. Each service was explained in detail with realtime examples. The sessions are practical and were invaluable. They allowed me to build and manage data pipelines, process large-scale data, and implement ETL workflows. This hands-on experience made me comfortable working in the AWS environment.\nHis teaching style was clear and engaging. He broke down complex concepts into manageable steps, making it easier to grasp even advanced topics like orchestration using step function and Airflow .In his session he explains us about the Real-world use-cases from Aws blogs like setting up data lakes , usage of glue bookmarks and orchestrate Amazon Redshift based ETL workflows .These projects boosted my confidence and prepared me for on-the-job challenges.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-09T06:00:36.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Very Valuable Training. Good Curriculum, Covering Most Important AWS Services for Data Engineering. Real World AWS Projects and Challenges to quickly become job ready. Simply Awesome.",
+      "text": "I recently completed the AWS Data Engineering course (RADE™: 100 Days AWS Data Engineering Challenge + Hackathon), organiseed and run by Sachin. I was delighted and impressed with the quality of learning provided by Sachin in this course. He has deep knowledge of AWS dataa related services, and his knack to explain very complex topics in clear succinct manner, made my learning experience truly outstanding. Sachin introduced and guided us through a wide range of AWS data technologies, including S3, Lambda, Athena, ECS Fargate, Redshift, Glue and many more. What set him apart was how he connected these tools/technologies to real-world data engineering scenarios, making it easier for us to grasp how they are used in practice. He made even the most challenging concepts, easier to understand via through practical examples and hands-on labs. One of the best aspects of the course was Sachin’s emphasis on hands-on learning. He ensured that we weren’t just absorbing theory but actively applying what we learned through well-structured labs and assignments. His patient and thorough explanations during Q&A sessions helped us remove all our queries and doubts. By the end of the course, I got confidence that using the learnings and knowledge shared by Sachin, I should be able to design and build data solutions using AWS services for data related real world challenges faced by the organizations. I would highly recommend this course to anyone wanting to build their expertise in AWS data engineering, whether they are beginners or looking to advance their skills. Thank you, Sachin, for a great exceptional learning experience!",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-07T19:10:48.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Highly recommended AWS DE course",
+      "text": "From my experience it's been a learning and growing journey in AWS DE with Sachin as an Experienced mentor to guide. The course curriculum extensively covers all Aws demanding services used in recent projects which gives clarity while working in projects. Resources provided are self sufficient to crack DE interviews for experienced and fresh folks. Guest and Self paced lectures provided also helped to revise important topics.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-06T17:31:01.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Sachin’s RADE program",
+      "text": "I got to know sachin thru linkedin connections and have been following him long time.\nHe was instrumental in encouraging the community to upgrade the skills especially with data engineering using cloud services.\n\nI believe sachin RADE program is absolutely on par and beyond the udemy or any online course.\n\nThe key difference is RADE program which is absolutely Hands-on session where every AWS service is experimented in detail and their use case is well explained as part of real world Data engineering skills. His course is crisp and very clear for theoretical overview while the interactive sessions are practical knowledge with real world usecases. Every session is like a hackathon since sachin already optimized his content and planned meticulously.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-06T04:41:45.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "AWS Data Engineering course is…",
+      "text": "Sachin’s AWS Data Engineering course is a great learning experience, especially for those looking for real-world exposure. He covers important AWS services like Glue, Redshift, Lambda, CloudFormation, S3, Athena, Step Functions, and ECS Fargate, along with many more. His hands-on sessions ensure we don’t just learn theory but actually apply it, and the recorded Deep Dive Sessions go into great detail, making it easy to understand both theoretical and practical aspects.\n\nHe is very committed to his students and genuinely wants them to succeed. He shares job postings, interview questions, and tips on LinkedIn profile building, which is really helpful for anyone looking to transition into a data engineering role.\n\nOne thing I found challenging is that the hands-on projects are quite large. Since I have a full-time job, it’s hard to find time to complete them on my own. He does an end-to-end demonstration, which is great for understanding, but smaller, focused tasks as homework would make it easier to practice step by step.\n\nI highly recommend this course to anyone serious about AWS Data Engineering. It’s value for money, packed with hands-on training, deep-dive sessions, and job prep guidance, making it a solid choice for career growth.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-05T22:28:05.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Thanks Sachin for amazing AWS DE course",
+      "text": "I would like to thank Sachin for making this amazing course for AWS data engineer. I have been working in the DWH/ETL world for the past 14 years and wanted to make a switch to AWS cloud. I tried multiple courses on Udemy and other websites. Those courses were useful, but they were focusing on several other aspects of AWS which are not required by a data engineer, and I was especially looking for hands-on classes to understand how AWS works in a real project and what tasks a data engineer needs to achieve.\n\nSachin's course is exactly at the point where it teaches us about different components that are heavily required for a data engineer along with components which we need to have a little understanding of. Also, he made sure that the course is not a 100% perfect project; he has built project on the fly and shown what errors we encounter in real projects.\n\nAt last, I am really happy that I enrolled for this course as I was able to get real hands-on AWS services which are used in the real world. If you are looking for real project learning for AWS focusing on the data engineering module, then this is the best fit, but also make sure you need to practice along with the course for getting a better understanding and grasping the concepts with more clarity.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-05T22:24:22.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Hi Sachin,",
+      "text": "I am Santosh Gosavi working as Sr. Data Engineer Malaysia, Kuala Lumpur, earlier I had worked with different cloud platform, I wanted to explore AWS cloud services. Dear Sachin thanks for having RADE data engineering program which help me get real time experience on AWS almost all services in details. Sachin's real-time work experience makes complex concepts easy to comprehend and implement in a live session.\nRADE Program gives you exposure to\nDeep Dive content - Where you just don't copy paste the code but Sachin gives you an opportunity to go out and explore before you start the the next material in the deep dive content and honestly the deep dive content is worth your time.\nI highly recommend this course to everyone wants to improve knowledge or upskill in AWS data engineering.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-05T05:03:18.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Highly recommended hand-on program",
+      "text": "I joined Sachin RADE program in January 2025 to strengthen my AWS Data Engineering skills. The course offers hands-on learning across key AWS services (S3, Athena, SNS, SQS, RDS, Redshift, Glue, Lambda, Step Functions, Airflow), with Sachin’s real-world expertise on making complex concepts easy to grasp. Discussion during the session are two-way communication every one share their industry experience, which broaden one’s knowledge how these service communicate in real world. It’s a practical and well-structured program that helps build real use cases, enhancing both learning and interview readiness.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-04T19:47:41.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Sachin Chandrashekhar’s 10-Week AWS…",
+      "text": "Sachin Chandrashekhar’s 10-Week AWS Data Engineering Course is an excellent investment for anyone looking to build or advance their career in data engineering. Its practical, hands-on approach, combined with expert instruction and industry-relevant projects, ensures that learners gain the skills and confidence needed to excel in the field. Whether you’re a beginner or an experienced professional, this course provides the tools and knowledge to master AWS data engineering and stand out in the competitive tech landscape.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-04T08:58:50.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "RADE program. Best program if you want to transition into Data Engineering.",
+      "text": "I am currently working as an MSSQL DBA and looking to transition into an AWS Data Engineer role. Initially, I started self-learning but struggled with answering real-time scenario-based questions. Then, I came across Sachin's RADE program, attended the introduction session, and liked the structured approach of the course, so I enrolled. Now, I have a solid understanding of various AWS services and can confidently frame real-time project stories during interviews.\n\nThanks Sachin!!!",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-02T16:10:06.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Real time aws data engineering course",
+      "text": "Hi Sachin,\n\nThankyou for introducing such a great course and I’m really enjoying all topics .\n\nI really liked the way you structured and designed a course by including step by step in document which makes us very easy to follow almost like spoon-feeding.\n\nCourse is practical and real time cases you discussed very helpful to understand industry real time work.\n\nMain important and core of course is hackathons which is live every weekend. practical use cases and hands-on exercises have helped me learn a lot\n\nall the important aws services are covered in this course.\n\nI highly recommend this course to anyone wanting to improve knowledge or upskill in aws data engineering.\n\nThankyou Sachin",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-02T04:51:23.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The RADE program is one of the best…",
+      "text": "The RADE program is one of the best course to kickstart with AWS cloud for data engineers . hands-on labs were extremely valuable in reinforcing theoretical knowledge. The course pace was well-balanced, allowing us to grasp both foundational and advanced AWS concepts .I really want to thank sachin for such an amazing program.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-02T02:51:30.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "RADE - Simply The Best Programme",
+      "text": "While looking for real world experiences on AWS Data Engineering, came across Sachin's LinkedIn Post listing all real world's tools and technologies of AWS Data engineering. During the demo class, I really enjoyed and connected to Sachin's way of explaining the tools and tech being used in today's aws data world, which really suits to my present job so without any dely joined the programme. The course has given me in-depth knowledge and real time experience that you will not find in any other courses.\nThe program went through:\nDeep Dives in form videos by Sachin explaining about AWS resources being used in present Data Engineering World in detail with real world use cases provided the in-depth knowledge. Hackthons in the form of Hands-on with well-tailored real-world projects on AWS resources such as aws roles, lambdas, glues, step functions, redshift, airflow, sns, sqs etc. gave real time experience. Hotseats are the experiences shared by mentees of Sachin about their project and interview experiences and how this program helped them in achieving their goals.\nTherefore, I strongly and honestly recommend everyone, who wants to enhance and experience the real-world AWS Data Engineering, not to miss the RADE Programme as this program is best for every level of data engineers.\n\nThanks Sachin!",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-27T19:16:17.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "RADE - Amazing program",
+      "text": "Hi Folks,\n\nI was very much curious to know more about real world data engineering courses on the web in AWS space and one day i got to see a LinkedIn post by Sachin where he shared his experience which was very relatable to me , i was working mostly on on-prem and recently moved to cloud role, so I wanted to improve my skill set to deliver better at my work and yes as everyone wants aiming for that jinga dala switch which can improve my lifestyle.\n\nTo all the folks who are planning to upskill and see some real world AWS solutions , I would highly recommend this program who wants to deep dive into AWS Data engineering.\n\nThe program gives you exposure to\nDeep Dive content - Where you just don't copy paste the code but sachin gives you an opportunity to go out and explore before you start the the next material in the deep dive content and honestly the deep dive content is worth your time.\n\nSpeaking about our weekly calls we celebrate peers success stories who have transitioned to amazing roles and also brainstorm or prep on the next hackathon calls.\n\nApart from this you get access to some real time quality discussions on data engineering field hosted by Sachin among the peers.\n\nIf you are thinking about joining this course , i can honestly say\n1) if you have dedicated sincerely you will be a more knowledgeable person by the end of this course and can look for better opportunities in market.\n2) The live hackathon build your data engineering muscles for sure, also I have seen very experienced people join this program with the hunger and desire to refresh their knowledge, i personally got to hear so much of industry experience on live hackathons sessions.\n3) You will feel more confident about yourself for sure.\n\nHappy Upskilling :)",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-27T14:38:32.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Higly recommended for DE",
+      "text": "This course is an instrument for those aspiring to learn and solve data solutions through AWS Data Engineering at the enterprise level. Sachin made this course with his entire IT experience to derive a simplified course material and demonstrate it through weekly hackathon sessions.\n\nNote: The critical part of this course is that at least one plus year of IT experience is required to REALIZE the importance of hackathon sessions.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-27T08:02:27.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Transformative Learning Experience for On-Prem to Cloud Transition",
+      "text": "The Ultimate RADE Data Engineering on AWS cloud course has been a game-changer for me as an on-prem data engineer transitioning to the cloud. The well-structured deep-dive sessions, practical use cases, and weekly hackathons provided a thorough understanding of AWS data engineering concepts. The hands-on approach helped me bridge the gap between on-prem and cloud technologies, making me confident in AWS. Thank you for designing such a practical and insightful learning experience!",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-26T13:24:42.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "AWS Data Engineering Boot Camp",
+      "text": "AWS Data Engineering Boot Camp\nI have recently attended AWS Data Engineering Boot Camp led by Sachin Chandrashekhar and I wanted to share my feedback.\nSachin demonstrated a profound understanding of AWS services, His ability to break down complex topics into understandable segments was incredibly helpful.\nThe sessions were interactive and engaging. He encouraged participation, facilitated discussions and used real-world examples that helped contextualize the material, making it more relatable and applicable.\nAfter the weekly Hackathon challenges ,I feel much more confident in my AWS skills and would highly recommend this course to others looking to expand their cloud knowledge.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-25T16:21:53.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Grateful for Sachin's Mentorship: Secured a Product-Based Company Job",
+      "text": "I want to express my sincere gratitude to my mentor, Sachin, for his outstanding training sessions. The content was not only detailed and insightful but also highly practical, especially the AWS training. His guidance and support were instrumental in helping me crack a product-based company interview and secure a job opportunity with an 80% hike from my current pay. His mentorship is perfect for anyone looking to transition careers, achieve growth, or enhance their technical skills. I truly appreciate his support and highly recommend his sessions to anyone aiming for success.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-25T13:12:49.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The Data Engineering on AWS Cloud…",
+      "text": "The Data Engineering on AWS Cloud course by Sachin has provided me with an invaluable learning experience, offering in-depth, real-world insights that are critical as we move into the future of AI and automation.\n\nThis course stands out as the first where I’ve engaged in live sessions and hackathons designed to foster hands-on practice, empowering me to apply my skills immediately. Sachin’s constant motivation and guidance throughout this journey have been essential in keeping me focused on adapting to the ever-evolving tech landscape.\n\nIn today’s world, where AI is increasingly shaping job roles and the future of data engineering, mastering cloud technologies are vital to staying ahead. For anyone looking to stay relevant and future-proof their careers, this course is an exceptional opportunity for both personal and professional growth.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-25T06:11:34.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "One of the best training on AWS Data Engineering",
+      "text": "The RADE program by Sachin is one of the best course to start your journey in the world of AWS Data Engineering. The training covers important services and topics like Lambda, Glue, Redshift, event driven architecture in-depth - all from basics. In the weekly Hackathon(s), you'll have an opportunity collaborate and learn with other data enthusiasts, where you'll also learn how to deploy data application in real time projects.\n\nI will recommend this course to anyone looking to learn data engineering on AWS.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-24T23:52:03.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Raid the AWS Data Engineering world with the RADE program",
+      "text": "I come from an ETL background having some good no. of years of experience. This program is very current and so apt to the field of AWS Data Engineering, that you don't need to go anywhere else. It is a one stop solution for almost all of the AWS DE services like IAM, S3, Athena, SNS, SQS, RDS, Redshift, Glue, Lambda, Step Functions, Airflow, EMR, EKS, Secrets Manager and etc. The program is designed in such a way that it educates you deeply in developing practical skills in the AWS DE world, which you can hardly find elsewhere. Sachin has loads of knowledge and real-time experience in this field which makes it easier for him to propose scenarios/solutions to each and every use case we come up with as part of our questions/doubts. One of the most important aspects of this program is that we will be able to build and design some use case stories ourselves to successfully present them during the job interviews. Been an inspiring journey experience ever since I have tagged myself to this course. Highly recommended.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-24T23:06:39.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Fearful to Fearless in AWS",
+      "text": "I am already experienced in AWS, have many certifications too but in organization everything works on minimum access, to get upper hand on any skill you need to have full exposure and access - so for this you need to practice in that skill, in this case AWS, though I have experience but was still feeling under confident, but after me associating with Sachin Sir, due to his guidance, teaching, his materials my confidence remains at peak in AWS, now I don't feel afraid to try any service. At last everything is dependent on practice the more you practice the more good you become at that. For me starting was the key from creating account in AWS to creating complex architectures , I also lacked mentor support but now I have got Sachin Sir as my mentor and I am very happy. A person fearful in AWS will become fearless after association with him.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-24T14:33:51.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "This bootcamp is a comprehensive course…",
+      "text": "This bootcamp is a comprehensive course designed to help us become proficient in AWS data engineering. The instructor is very knowledgeable and incorporates well-structured guide for us to perform our hands-on. The contents are well-structured and covers a wide range of important technologies and services needed for AWS data engineering. I highly recommend this course to both beginners and experienced professionals who are looking to learn or enhance their skills.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-24T14:17:20.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The RADE programme",
+      "text": "The RADE programme, conducted by Sachin, is an excellent course that I highly recommend. Over the past two months, Sachin has been personally conducting the sessions every Saturday, and his dedication to teaching is truly commendable. He ensures that all concepts, conducted till now such as serverless compute, step functions, Redshift, and EC2, are covered in great detail, making them easy to understand especially the deep dive course which has a phenomenal content the practical approach he takes in explaining complex topics has helped me grasp the concepts quickly.He takes the time to look into any issues or doubts that arise during the sessions He simplifies the difficult concepts by explaining them by considering real life example .With Sachins guidance, you can expect to learn valuable skills in a structured, engaging environment.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-23T07:05:06.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The AWS Real Time Data Engineering…",
+      "text": "The AWS Real Time Data Engineering course is one of its kind. The course has concentrated on life of AWS data engineer touching each and every module a DE uses . Most courses out there touches on basics on every module but will not go indepth. In Sachin's Course you will see a data engineer build his pipelines on his own step by step. Rectifying the errors which one gets on daily basis when written the code from scratch (which is not the case with other content creators where they use 100% working code while building from scratch). He has also taken into account of the course fee to keep it as minimal as possible to make AWS DE course available for as many as possible. My heartful thanks to Sachin for making this course to be accessible for many people.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-23T04:57:02.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The Ultimate RADE Data Engineering on…",
+      "text": "The Ultimate RADE Data Engineering on AWS Cloud course by Sachin has provided me with invaluable real-world experience. The deep-dive sessions are truly gems.\n\nI have purchased three to five courses before, but I never completed any of them. However, this is the first course I can confidently say I have completed, thanks to Sachin's continuous motivation throughout the journey.\n\nFor those who want to learn by building real-world use cases, I highly recommend this course—it's 101% worth it!",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-23T04:00:28.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Hands-on Expertise and Unmatched Mentorship: My Journey with Sachin's RADE AWS Course",
+      "text": "I came across Sachin Chandrashekhar's Data Engineering Hub - RADE program on LinkedIn, and as soon as I saw the link, I knew I had to enroll. After sharing my background and experience with Sachin Sir, I realized that the AWS Data Engineering course would be the perfect addition to my skill set. Although the course wasn’t yet running at that time, Sachin Sir kept me informed, and I waited patiently for the next batch, which started in January 2025.\n\nFrom the moment I began the program, I quickly realized how incredibly helpful and approachable Sachin Sir is. He not only provides a deep understanding of AWS Data Engineering concepts but also incorporates real-time, hands-on training that mimics day-to-day tasks of an AWS Data Engineer. This practical exposure was exactly what I needed to take my skills to the next level.\n\nBeyond the course material, Sachin Sir has been a constant source of guidance, offering valuable advice on things like LinkedIn profile optimization and professional growth. He is not only a top-notch mentor but also a genuinely kind and helpful person, always ready to support his students in every way possible.\n\nI highly recommend Sachin's RADE program to anyone looking to advance their career in AWS Data Engineering. This course is truly transformative and offers the perfect blend of technical skills, professional guidance, and personal mentorship.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-22T15:04:36.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "RADE program by Sachin for AWS data engineering",
+      "text": "Earlier I was only having GCP experience and Since less or no calls in market for GCP, I decided to learn new cloud and then I found Sachin's RADE program.\n\nThis RADE program by Sachin is in detail, depth and covers all major parts of AWS services. He also covers Hackathon projects where you will get a practical hands-on on this services and more importantly you will get a feeling of working in real-time project.\n\nJust by practicing hackathon, I was able to crack interview, thank you Sachin!!\n\nHighly recommend others to enroll for this course if you are looking for AWS cloud learning.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-20T06:37:37.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Awesome Course in AWS",
+      "text": "The Ultimate RADE™ Program is truly an amazing course! One of my favorite parts is the RADE™ Hackathon Live, where we deep-dive with Sachin every weekend and immediately apply what we learn to our daily tasks. The Deep Dive recorded videos are also invaluable. I watch them repeatedly to master my skill set. Lastly, the hotseat sessions provide real-world project demos, making the learning experience even more practical.\n\nAfter two months in Sachin’s program, I successfully helped my company reduce its AWS bill by 25% compared to January 2025. This achievement not only made me stand out but also opened doors for a potential salary increase, all because I took action in my role!\n\nDon’t wait and join now and start applying these skills to your job! 🚀",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-03-05T02:02:36.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "This is an amazing course on AWS",
+      "text": "This is an amazing course on AWS, and the instructor, Sachin Chandrashekar, is amazing too. I m Sure one would thoroughly enjoy this course, it is well structured, with full support to the students, and an amazing AWS Data engineers community to be a part of.\n\nMakes complex topics feel approachable and less overwhelming. The instructor is calm and peaceful, which creates a great learning environment.\nThey provide real-world examples, making AWS data engineering concepts more practical. Hands-on exercises help reinforce learning.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-20T00:46:17.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Has good knowledge of Data Engineering",
+      "text": "Has good knowledge of Data Engineering, reliable source for learning",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-01-08T11:26:09.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Amazing Program for Aspiring and Experienced Data Engineers",
+      "text": "While browsing LinkedIn, I came across the RADE program, and its curriculum immediately stood out to me. As a Data Engineer aiming to expand my skill set, I decided to enroll—and it turned out to be a game-changer for my career.\n\nThe program offers a comprehensive curriculum that covers a wide range of essential topics with a strong emphasis on practical application. The live hackathons and interview preparation sessions are particularly valuable, providing hands-on experience and boosting confidence. I also appreciate the in-depth focus on complex concepts, making them accessible and easy to grasp.\n\nWhether you’re looking to start a career in data engineering or enhance your current expertise, I highly recommend the Data Engineering Hub.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-11-27T07:36:04.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "When you want to learn a Real-time…",
+      "text": "When you want to learn a Real-time project in AWS this is the right place to land. I will always be thankful for the decision I made a few months back which filled my expectations and now where I am all because of you Sachin. Kudos to your design and effort which we can see in the course. I am sure you will be in a better position once you are in this course. I high,y recommend his course to people who are looking out for AWS DE this is the right choice go for it.\n\nBTW I have 4 offers in hand now, cheers to you Sachin!!",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-11-22T13:07:44.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Highly recommended course",
+      "text": "This course is really detailed and prepared me for the data engineering career. I enjoyed the hackathons and the fact that Sachin is available for any queries.\nI also appreciated the fact that there were others already working and they got to share their experiences throughout the weekly hackathon. I’ll highly recommend this course to anyone who wants to start their DE career or wants to upskill.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-10-07T21:28:01.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Simple and structured self paced…",
+      "text": "Simple and structured self paced content of Aws data services.\nGreat hard work by Sachin in preparation of hackathon materials which motivates anybody to work upon.\nWell organized and commitment by Sachin during hackathon.\nMotivates the camp by his passion on helping students to learn AWS.\nEmpower the camp people by inviting his old students who succeed in their goals.\nI wish him good luck to come up with such boot camps and most people benefit from it and fulfill their goals.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-10-06T22:08:33.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Outstanding AWS Data Engineering Course with Exceptional Instruction and Practical Learning",
+      "text": "The AWS Cloud Data Engineering course has been an outstanding learning experience. One of the key strength of the course is the Sachin's deep knowledge of AWS and his ability to simplify the complex topics. He ensures that every question is addressed thoroughly, no matter how challenging, which makes the learning process smooth and engaging. The interactive nature of the course, combined with diverse group of participants has made the learning more collaborative.\n\nSachin's dedication and expertise in the AWS domain are truly motivating. Even with busy schedule, his commitment and teaching style compel you to stay on track and complete the course. His hands-on approach and in-depth understanding of AWS services build confidence with each module. The practical projects provide real world exposure, making it easier to apply what we've learned to industry-relevant problems. Each topic is aligned with current industry standards, ensuring we're gaining skills that are highly valuable. I highly recommend this course to anyone looking to master AWS Cloud Data Engineering.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-10-05T22:57:58.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "AWS Data Engineering",
+      "text": "I Joined, Sachin AWS Data Engineering course and got in detail end to end pipeline project using different AWS services as Lambda,Glue,SNS,SQS,S3,EMR,Step Functions.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-10-05T20:09:13.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Sachin’s AWS Data Engineering Course",
+      "text": "I recently completed the Sachin AWS Data Engineering course, and it was a comprehensive and insightful experience. The course structure was well-organized, covering essential topics such as data lakes, ETL processes, and AWS services like S3, Redshift, and Glue.\n\nSachin knowledgeable and provided practical examples that made complex concepts easier to understand. I particularly appreciated the hands-on labs, which allowed me to apply what I learned in real-world scenarios.\n\nOverall, I highly recommend this course for anyone looking to enhance their data engineering skills on AWS. It provided me with the tools and confidence to tackle data projects effectively.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-10-04T23:50:24.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "AWS Data Engineering Course",
+      "text": "I enrolled for Data Engineering - AWS course by Sachin. It is really an amazing course worth spending money to get what you want. The course covers all required day to day services in Data Engineering profile with hands on use cases. Sachin explains well through theory on his portal as well as during sessions. Main focus is on practices/use cases. He is always there for help to resolve queries. The course covers AWS services such as IAM, SQS, SNS, Lambda, S3, Redshift, Glue, etc and more real-time scenario based approaches. He\nI think you will not find such focused approach towards yourself if you will enroll in other trainers courses and those are expensive as well. Highly recommended!",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-10-02T11:47:47.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The AWS Data Engineer Bootcamp led by…",
+      "text": "The AWS Data Engineer Bootcamp led by Sachin was an outstanding learning experience. His in-depth knowledge and teaching style made complex AWS concepts easy to understand and apply. The course covered essential AWS services like S3, Redshift, Glue, Step Functions, Lambda, and CloudFormation, with a strong emphasis on practical applications in real-world scenarios. Sachin’s hands-on approach, combined with his ability to explain advanced topics clearly, helped solidify key data engineering skills. The bootcamp was well-structured, and the projects provided were highly relevant, making it a valuable experience for anyone looking to enhance their AWS expertise.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-10-02T07:03:20.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The AWS Data Engineer course",
+      "text": "The AWS Data Engineer course exceeded my expectations! It provided in-depth knowledge of AWS services, such as S3, Lambda, Glue, Athena, Step Functions and Redshift, and their practical application in real-world data engineering scenarios. The course was well-structured, with clear explanations, hands-on labs, and insightful examples that made complex concepts easy to understand. Sachin is very knowledgeable and supportive. This course significantly improved my skills in building and optimizing ETL pipelines, data integration. Highly recommended for anyone looking to advance their AWS data engineering expertise!",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-10-01T17:01:45.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "I highly recommend the AWS Data…",
+      "text": "I highly recommend the AWS Data Engineering program. The curriculum is well-structured, with comprehensive self-paced content and weekly live practice sessions that make it accessible even for those with no technical background or prior knowledge of cloud technologies. Sachin brings a wealth of real-world experience in Data Engineering, from traditional ETL with Informatica to AWS cloud technologies, which enriches his teaching and makes the concepts easy to understand, from the basics to more advanced topics as needed. I also appreciate his commitment to the learning process, especially his initiative to host open Zoom calls during the weekdays, allowing students to collaborate, practice, and resolve any issues together. Finally, I'd like to extend my gratitude to Sachin for this excellent course and for the opportunity to connect with so many passionate data enthusiasts.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-09-29T02:17:51.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "AWS Data Engineering by Sachin",
+      "text": "The AWS Data Engineering course is truly excellent and highly interactive. One of the standout aspects is the on-the-spot doubt clearance, ensuring that no question goes unanswered. With a diverse group of participants from various backgrounds and levels of experience, the collaborative learning environment is enriched by valuable input from everyone. Sachin has been doing a fantastic job. He is patient, approachable, and very thorough when addressing the doubts and concerns of learners. His teaching style makes complex topics easy to grasp and improving confidence as we progress through each module.\nHands-on projects are particularly helpful, giving us practical exposure and confidence in applying AWS services to industry-relevant problems. Each topic covered is aligned with the skills required for real-world projects, ensuring we stay updated with the latest industry standards. I highly recommend it to anyone looking to deepen their knowledge of AWS data engineering.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-09-28T05:37:39.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "This is an awesome undertaking by…",
+      "text": "This is an awesome undertaking by Sachin to upskill individuals from around the world. The value of this bootcamp is really more than 10x what we pay for. I took this challenge after passing the AWS Data Engineer Associate certification. The hands-on approach perfectly covers the gap left by theory. Even for people with no such certification, the content is well explained and focuses on real-world scenarios, patterns, anti-patterns and approaches. Sachin gives your professional experience some time-travel of not less than 3 years. Highly recommended.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-09-27T22:14:00.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "AWS Data Engineering RADE Program Experience",
+      "text": "I recently completed Sachin's AWS Data Engineering RADE program and the course was extremely useful and well organized for AWS beginners.\n\nFirstly, the hands-on labs and demonstration of best practices are particularly valuable. Sachin's ability to explain complex concepts in a clear and understandable manner was truly impressive. The real-world examples you provided helped to contextualize the information, making it easier to grasp and more relatable to our daily tasks.\n\nI also appreciated Sachin's interactive approach. Encouraging questions and facilitating discussions made the sessions more engaging and allowed us to learn from each other's experiences. Your patience and willingness to address all queries, no matter how small, created a positive and inclusive learning environment.\n\nAdditionally, the resources and materials shared were extremely helpful. The step-by-step guides and hands-on exercises were particularly beneficial in reinforcing the concepts covered during the sessions. I found that the step-by-step guides bridge the gap between theory and practice effectively.\n\nOverall, I found the training to be highly valuable and feel more confident in my AWS skills as a result. Thank you for your dedication and effort in delivering such a comprehensive and engaging training program.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-07-25T22:09:52.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Great experience",
+      "text": "I have recently completed the AWS Data Engineering Bootcamp conducted by Sachin. I am currently working as a Hadoop Admin in a service based company. This bootcamp has significantly broadened my skill set, enabling me to transition into the AWS Data Engineering domain.\n\nThe bootcamp has certainly helped me gain expertise in AWS cloud data engineering services. It provided a solid foundation in AWS DE services, covering everything from basic concepts to advanced practices.\n\nSachin conveyed intricate AWS concepts with ease, making them accessible to all participants. Their use of relatable examples and clear explanations enhanced comprehension. Sachin's ability to break down complex ideas into digestible parts was particularly impressive.\n\nThe course was meticulously structured, balancing between theory and practice. Each session allowed ample time for discussion and hands-on exercises, ensuring thorough understanding. The progression from simple to complex topics was smooth and logical, making the learning curve manageable.\n\nSachin displayed exceptional expertise in AWS, adeptly handling all queries and sharing practical insights that were immensely valuable. His deep understanding of AWS services and industry best practices was evident throughout the bootcamp.\n\nThe course content was current, reflecting the latest AWS updates and features. This was crucial for keeping pace with industry advancements. The inclusion of new AWS tools and services ensured that we were learning the most up-to-date information.\n\nSachin created an interactive and engaging classroom atmosphere. Regular quizzes and interactive Q&A sessions kept the learning dynamic and engaging. The collaborative approach fostered a sense of community among participants, enhancing the overall experience.\n\nSachin was highly supportive, offering personalized guidance and extensive resources. Their willingness to assist outside of class time was greatly appreciated. Office hours and additional help sessions were instrumental in reinforcing the material covered in class.\n\nThe course materials were comprehensive and thoughtfully organized. The combination of lectures, slides, and lab exercises worked seamlessly together. The materials were not only informative but also practical, aiding in the retention and application of knowledge.\n\nThe practical labs and projects were highly relevant, mirroring real-world AWS applications. This approach significantly enhanced my practical skills and confidence. Working on these projects gave me a clear understanding of how to apply theoretical knowledge to solve real-world problems.\n\nThe AWS Cloud Data Engineering Bootcamp was exceptional. Sachin's knowledge, effective teaching style, and the well-designed course material made for a remarkable learning experience. I now feel well-prepared to apply AWS skills in real-world situations. Thank you for such an outstanding course.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-07-14T08:02:10.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Great Course!",
+      "text": "I recently completed Sachin's AWS Data Engineering course, and it was a transformative learning experience. The course provided a solid foundation in various AWS services like S3, Lambda , Redshift ,Glue along with IAM, SQS ,SNS, Secret Manager etc.\n\nIf I talk about pros of this course:\n\n1. Hybrid course model: A combination of recorded sessions and live hackathons.\n2. Focused content: Dedicated topics covered concisely and to the point.\n\nThe hands-on labs were particularly valuable, offering practical experience with real-world scenarios. These exercises reinforced the theoretical knowledge and equipped me with the skills needed to tackle data engineering tasks confidently.\n\nOverall, this course come out to be an excellent investment for me. I highly recommend it to anyone ,especially beginners who are looking for upskilling in AWS their Data Engineer journey.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-07-13T19:37:18.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "AWS data Data engineering Bootcamp Experience",
+      "text": "Here is my experience for AWS data engineering bootcamp conducted by Sachin :\nClarity: The instructor explained complex concepts with great clarity, making them easy to understand. The use of real-world analogies and examples was particularly helpful.\nPacing: The course was well-paced, with ample time for both theoretical understanding and hands-on practice. The instructor ensured that no student was left behind.\n\nExpertise: The instructor demonstrated a deep knowledge of AWS services and best practices. They were able to answer all questions thoroughly and provided insightful tips and tricks that went beyond the course material.\nUp-to-date: The content was current and included the latest updates and features of AWS. This was particularly beneficial for staying relevant in the fast-evolving field of cloud computing.\n\nInteractive Sessions: The instructor encouraged participation and fostered a collaborative learning environment. Interactive quizzes and Q&A sessions were highly effective.\nSupport: The instructor was very supportive, providing personalized feedback and assistance whenever needed. Office hours and additional resources were a great help.\n\nComprehensive: The course materials were comprehensive and well-organized. The slides, documentation, and lab exercises complemented the lectures perfectly.\nPractical Application: The hands-on labs and projects were highly relevant and mirrored real-world scenarios. This practical approach greatly enhanced my understanding and skills.\n\nSummary:\nOverall, this AWS Cloud Data Engineering Bootcamp exceeded my expectations. The instructor's expertise, engaging teaching style, and the well-structured course material made for an exceptional learning experience. I feel much more confident in my AWS skills and ready to tackle real-world challenges. Thank you for a fantastic course!",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-07-13T19:22:54.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 3,
+        "source_url": "https://www.trustpilot.com/review/dataengineeringhub.in?page=3"
+      }
+    }
+  ]
+}

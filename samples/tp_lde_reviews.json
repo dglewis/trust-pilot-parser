@@ -1,0 +1,786 @@
+{
+  "metadata": {
+    "total_reviews": 37,
+    "extracted_date": "2025-03-25T11:33:56",
+    "version": "2.0"
+  },
+  "reviews": [
+    {
+      "stars": 5,
+      "title": "Great content, great teaching team, great support",
+      "text": "The teaching team and content is very good. There is a LOT of material, so you need to stay serious and devoted to complete it all. I finished most of the material, but need to complete some of the capstone projects. I highly recommend joining the Academy and following Andreass on Youtube. I purchased the unlimited access (no expiry) which I really suggest.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-02-28T12:24:39.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Coaching & Learning Platform Review",
+      "text": "I subscribed to the lifetime learning platform along with the 6-month coaching program. Coming from a data analyst background (BI tools, Python, Excel, and SQL), I had no prior experience with data engineering tools.\n\n1) Review of the 6-Month Coaching Program:\n- Personalized learning path: Trainers provide customized modules based on my skills and local job market demands, including a structured learning plan and tailored projects like OLTP, OLAP, or ML-based projects.\n- Career development support: Beyond technical skills, trainers guide resume enhancement, GitHub improvement, blog writing, and job interview strategies from real-world experience.\n- Expert trainers from diverse backgrounds: The three trainers specialize like in GCP, AWS, dbt etc and coming from both corporate and startup environments.\n- Weekly coaching calls & Discord support: Group calls allow live Q&A, though experienced learners might find waiting times long. Discord DMs provide quicker, direct support.\n\nBenefits:\n- Real-world guidance: I gained valuable insights from experienced data engineers, learning both technical and industry best practices in a supportive, non-gatekeeping environment.\n- Identifying blind spots: Trainers pointed out overlooked areas like throttling in streaming pipelines and data governance, helping me improve design and documentation skills.\n- Confidence in project design: My OLTP/OLAP designs were reviewed and validated by industry professionals, boosting my confidence.\n\nChallenges:\n- Misconception about coaching vs. bootcamp: Initially, I expected structured evaluations but later realized coaching is self-driven guidance, not a step-by-step course.\n- Time zone differences: Calls were late at night for me, making myself less productive. But I endure tho.\n- Self-learning required: Solutions aren’t spoon-fed; independent problem-solving is essential.\n\n2) Review of the Learning Platform:\n- Clear and concise content: Modules are broken into short videos, making complex topics easier to grasp. Andreas does a great job of visualizing workflows (e.g., his “Data Science Blueprint”).\n- Wide coverage from basics to advanced topics: Covers Python, security concepts, OLTP/OLAP projects, and cloud platforms (AWS, Azure, GCP).\n\nBenefits:\nSimplified explanations: Topics like data modeling are broken down for easier learning.\n- Lifetime access & diverse tools: Useful for refreshing skills whenever needed.\n\nAreas for Improvement:\n- More content on scaling & system design would enhance the end-to-end learning experience.\n- Limited open-source tool coverage, though projects naturally introduce complexity over time and makes sense no platform can ever support such details yet.\n\nFinal Thoughts:\nThis program exceeded my expectations as aspiring data engineer, offering real-world coaching, hands-on projects, and career guidance or even use coaching as consultation session instead. I’d highly recommend it for self-motivated learners ready to put in the effort! DO NOT join coaching if you are hoping to get A-Z code along support and does not have solid time commitment for the project. DO subscribed the learning platform first instead if that the case.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-01-31T16:01:21.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "I am using the platform for quite a…",
+      "text": "I am using the platform for quite a while since i got lifetime upgrade. The platform is very good detailed course for everything and tool with regular updates and addition to the library. The author is fairly active on discord .",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2025-01-29T19:11:23.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "the suggested curriculum",
+      "text": "the suggested curriculum, the fact of using containers, github and the projects at the end of the course is much more attractive than many courses I have already tried to take.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-06-04T22:36:54.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Excellent course",
+      "text": "",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-04-13T21:21:45.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Amazing for DE",
+      "text": "Really well organized all the content. Andreas give you an experimented opinion about the topics, something I really like. All the chapters have their explanation and hands-on part, I'm happy with the academy",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-02-05T01:03:28.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Very broad and thorough curriculum.",
+      "text": "Very broad and thorough curriculum. Great access to a community of Data Engineers and others learning data engineering.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-01-23T09:42:50.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "All you need on one platform",
+      "text": "I really like how all is structured on one platform. You don't have to scrape through 1000 YouTube videos. Here you find everything you need to become a data engineer.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2024-01-11T12:14:03.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The best course in the industry",
+      "text": "The best course in the industry. I am blown away by the quality of the contant. The trainers are the best who got enormous amount of knowledge and expertise. I requested them for help which they immediately offered.\nThanks\nHariKrishna",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-10-19T10:29:12.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "great content",
+      "text": "Great content",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-08-22T18:18:21.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Andreas is a fantastic instructor",
+      "text": "Andreas is a fantastic instructor. I am grateful for the incredibly well-structured data engineering course he has provided. The most beneficial aspect for me was the inclusion of hands-on projects; these allowed me to practically apply the concepts and theories I learned throughout the course.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-06-27T15:07:10.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Got me a Job and helped me with It",
+      "text": "",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-05-11T23:59:12.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 4,
+      "title": "pretty good introduction to API concepts",
+      "text": "This was a pretty good overview of API concepts and the use of FastAPI. It requires some extra research on FastAPI's website and other sources to get exercises in some of the lessons to work.\nIt took me a while to figure out how to configure the WSL setup properly. File paths are important, and this isn't covered much in the lessons.\nFor example, when installing UVICORN, there are a couple of warnings \"the script uvicorn was installed (at a certain path) but this path is not in PATH\". After adding the path to Ubuntu PATH, vscode pylance still does not recognize some of the Python packages. (Needed to restart vscode.) Also, UVICORN needs to be started (reloaded) in the path where the main.py exists.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-05-08T23:58:23.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Awesome sessions as always",
+      "text": "Awesome sessions as always\nLearned a lot",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-04-14T15:59:33.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Very useful for learning DE.",
+      "text": "Vey hands on approach.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-04-09T01:33:25.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Course on Choosing Data Stores",
+      "text": "The company is doing well and has significant knowhow in Data Engineering. I can say I have learnt a lot that's highly beneficial to me.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-03-21T19:24:15.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Best Course to Learn Data Engineering",
+      "text": "We can find a lot of content about Data Engineer on the internet, but we can't find it like in the Learn Data Engineering Academy.\nI always wanted to learn Data Engineering but was looking for something that can guide me well and nothing can bit this Academy course structure. Everything is well structured and well explained here. The best part is you get to do lots of hand-on with relevant courses, and Andreas is always direct and very practical.\nIt really guided me in my professional life.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-03-15T21:09:16.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The course that I was missing!",
+      "text": "We can find a lot of content about Data Engineer on the internet, but we can't find it like in the Learn Data Engineering Academy.\nThe whole pipeline together!\nVery well structured, with relevant courses, always direct, very practical.\nIt really guided me in my professional life. 10/10",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-03-03T10:47:41.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Best Data Engineer learning",
+      "text": "Andreas is a great teacher. The content is fully curated, and as Lead Data Engineer I come across super useful information for learning different Cloud Providers approaches.\n\nThe main difference, and the aggregate value are the office hours. ONLINE spaces asking almost anything to Andreas in first person, having a truly back and forward.\n\nI really would love to come across the academy sooner, but know i am proud and going to the lifetime subscription.\n\nSantiago Caraballo\nLead Data Engineer",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-02-17T18:19:50.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "A great learning platform with a community",
+      "text": "I started by having 1 on 1 coaching with Andreas, which gave me a very good understanding of the fundamental principles. I use them at work everyday!\nAfter that, I enjoy the platform and the community to keep updated with the latest tools and trends in Data Engineering",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-15T19:26:45.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 1,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The premier Data Engineering Starter program",
+      "text": "Andreas has created groundbreaking content in the Data Engineering Academy, as well as other content that contribute to the Data Engineering profession.\n\nThe courses on this platform, as well as the YouTube videos and other content has helped me gain a strong sense of direction, as well as the confidence required to start a career in Data Engineering. Simply taking the courses helped me pivot from core Data Science into Data Engineering within the space of 7 months.\n\nI have, and will keep recommending learndataengineering.com and the Data Engineering Academy to anyone and everyone who is interested in starting a Data Engineering career.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-15T09:35:14.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Comprehensive Data engineering Training",
+      "text": "I went through the coaching program from Andreas Kretz and thoroughly enjoyed the sessions. Both beginners and experienced folks can take the course and gain value out of it. Data Academy videos were mostly hand on to develop a variety of skills including database design, data warehousing, data modeling, and data pipeline development. Follow Andreas on various channels to gain insights on what's happening on the Data Engineering world.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-12T09:33:24.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The Chief Data Plumber and a World Class Coach!!",
+      "text": "There is a lot to be said about Andreas. For one, he coined the term \"Plumbers of Data Science\". It's a great analogy for data engineering!\n\nWhen I first joined his class...I was quite intimidated. Having watched many of his youtube videos, he was easily the most knowledgeable, straight-forward and sharpest of the youtube personalities that I came across. He was a mentor of mine, whose content I watched over and over, educating myself on topics around data engineering and analytics. He had an impressive background, and focused on a niche area I was interested in (data in industry).\n\nHowever, it was humbling being a part of his mentorship program. As sharp, intelligent and wise as he is...Andreas is also a down to Earth nice guy. He was patient when answering questions, shared best practices and processes with his students, helping them structure their own data projects in a methodical way. He entertained my many questions, and was always professional and available for any follow up and help.\n\nOver time, I now consider Andreas a friend, and a data coach. He is a natural teacher, and his content is essential for anyone pursuing learning/work in the field of data engineering and analysis.\n\nHighly recommend Andreas to anyone looking to take their journey in data to the next level!",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-12T03:26:51.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "up-skilling via data engineering",
+      "text": "Some time last year, when I was trying to understand the data engineering field better, after some research, I found out about the site learndataengineering.com.\n\nThere are several technologies/techniques\nand tools covered on the site. The instructor Andreas Kretz has a great teaching style, he doesn’t throw any technical jargons to explain anything\nand never rushes through any topic, which I truly appreciate.\n\nI look forward to ongoing learning\nfrom this website.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-11T02:25:58.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Precise on basics of Data engineering",
+      "text": "I’m now working as a full time data engineer and everyday I’m using the tools, knowledge, and experience I learn from Andreas Learn Data engineering courses.\n\nI think I enjoy my job because I was trained precisely by Andreas about the data engineering basics.\n\nHis course are designed in such a way that helps you begin with any new tools quite easily.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-10T21:22:21.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 4,
+      "title": "There is room for more than introduction to Spark",
+      "text": "I understand that this field is vast but there is a genuine need to teach spark beyond those introductory lectures. The topics covered are too elementary.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-09T12:16:29.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The right place to learn data engineering",
+      "text": "If really you want to become a data engineer you have to learn the job from a data engineer.\nThe academy is the place to learn this job.\nYou learn the basic then the right tools and how to choose them (based on your data, your schema ...) then you build a pipeline.\nLike that, you will learn by doing and at the end you will have a solid knowledge and a competitive portfolio.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-06T20:06:34.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Cookbook and Andreas is all you need to know when we say Data Engineering",
+      "text": "I got introduced to Andreas through the cookbook. It was an excellent summed up version of what data engineering is which was short and easy to understand. I tried my chances and messaged him on LinkedIn requesting for a call to learn from his experience. He was responsive and ready to teach from his experience in the field. In next 3 months I joined the data engineering academy with the pursuit of learning pipeline development in AWS cloud and exploring the monitoring piece in data pipelines. Through the course of next couple of months, Andreas helped me think out of the box and problem solve simple and complex solutions with his extensive experience in the field of data engineering. The discussions and peer and support channels created by Andreas were phenomenal in reaching out to a larger audience and learn from their projects through knowledge sharing and extending a hand at solving someone else's problem. This channel also gave me an open access to understand what kind of data engineering problems are being solved around the globe, technologies different companies prefer, and trends in data across borders. This has truly broadened my perspective in the domain and I'm ever grateful to Andreas.\nAndreas has been a great teacher and an innovative leader in the space of data. His content is to the point and just what is needed to ace in the field. He is up to date with the latest technology and incorporates in his curriculum at the earliest. He is pretty hands on and that is what makes him stand out in the crowd. On a personal note, he's always been available, supportive , and enthusiastic to learn and help. I am more than glad to be connected and mentored by him. He is truly a wonder to work with.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-05T20:23:20.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Just go for it.",
+      "text": "If you are at a beginner/intermediate level and looking for a place to find what you need to know to succeed in Data Engineering field, this is the place.\nThe topics covered are aligned with industry standards and are relevant to your daily job. The hands-on projects show you how to put everything together to create your pipelines.\nNo, you will not find everything explained at the deepest level possible, but the content will help you to start and prepare you to go further by your own.\nAndrea's speaks naturally on the videos without any pre-prepared script (I think) which makes them way easier to digest and follow up, generally on MOOCs the teacher just reads things, or even you only have slide decks with voices in the background and is terrifically boring.\nIf you are an experienced Data Engineer, Academy is a good place to keep up with new technologies and frameworks, but you may not find many insights from the technologies you already know.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-05T18:11:49.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "As a data strategist I have to keep up…",
+      "text": "As a data strategist I have to keep up with the different possible options a data engineer has when building the solutions I can dream up. Learn Data Engineering allows me to stay on top of my game by offering short, but clear and complete courses with hands on exercises.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-05T13:07:43.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Great platform to learn about data engineering",
+      "text": "Lots of great content that covers relevant tools and concepts that are important to know as a data engineer. Hands-on projects also help to drive home the understanding. I couldn't recommend this learndataengineering.com enough.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-05T11:40:55.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 4,
+      "title": "May be more effort on content",
+      "text": "The choice of courses and topics covered are overall fine and pertitnent to my career. Perhaps need to go deep in some topics students are left sometimes with questions without answers.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-03T23:39:05.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "One stop shop for Data Engineers",
+      "text": "I made a Transition from database developer to data engineer with the help of Andreas and his academy. Andreas knows the current situation and trends in data engineering and he produces relevant and practical courses. I strongly recommend the academy to anyone who wishes to enter data engineering field.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-03T23:21:33.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "It's the place to go if you want to LEARN Data Engineering",
+      "text": "The course materials were well-organized and easy to follow, and the instructor (Andreas Kretz) is very knowledgeable.\n\nOne of the things I appreciated most about the course at the Learn Data Engineering Academy was that it covered a wide range of tools and technologies. This gave me a well-rounded understanding of the field and helped me to see how different tools can be used together to solve complex data engineering problems.\n\nI highly recommend the Learn Data Engineering Academy to anyone looking to gain valuable skills in the field of data engineering.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-03T14:11:45.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Data Engineering with Snowflake",
+      "text": "Just completed Data Engineering with Snowflake course from the Academy. I had absolutely no idea about Snowflake, but the way the course was paced and structured, by the time i completed it, i now feel well equipped. Thank you Academy for such good content.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2023-01-02T05:04:29.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "Data engineering is well detailed…",
+      "text": "Data engineering is well detailed compared to all the videos I have seen in the past.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2022-12-29T17:10:51.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    },
+    {
+      "stars": 5,
+      "title": "The biggest value in the Academy for me is its practicality",
+      "text": "What is a cookbook? A cookbook is a book of detailed practical instructions. I came across Andreas's content through his data engineering cookbook on git. Then, it was a series of youtube videos on the topic. Then, Andreas started his Learn Data Engineering, a data engineering academy. The format has evolved through the time, but the idea remained the same - to provide learners with step-by-step practical instructions on how to complete a particular task such as to set up a data pipeline on AWS / Azure; to design and deploy a transactional database in MongoDB; etc. So, the biggest value of the Academy for me is in its practicality.\n\nAnother thing I appreciate in Andreas's Academy is that he doesn't bluntly follow the next 'big' and 'trendy' thing on the market and push it to us, rather teaching the basics of de / proven technologies that has been on the market for some time.\n\nOne of the challenges of online courses is the content maintenance as some better ways to approach a task appear/old approaches re-appear. I think this strive for the quality practical content that remain current is what keeps me to remain the Academy subscriber for the last couple of years.",
+      "company_response": "",
+      "reviewer": {
+        "name": "Anonymous",
+        "location": "",
+        "reviews_count": null
+      },
+      "date": {
+        "published": "2022-12-28T09:31:48.000Z",
+        "experience": ""
+      },
+      "metadata": {
+        "verified": false,
+        "useful_votes": 0,
+        "page_number": 2,
+        "source_url": "https://www.trustpilot.com/review/learndataengineering.com?page=2"
+      }
+    }
+  ]
+}
