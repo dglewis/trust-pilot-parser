@@ -13,23 +13,45 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
+# Configuration parameters
+CONFIG = {
+    # Browser settings
+    'chrome_options': [
+        '--headless',
+        '--disable-gpu',
+        '--window-size=1920,1080',
+        '--disable-extensions',
+        '--no-sandbox',
+        '--disable-dev-shm-usage'
+    ],
+    
+    # Request settings
+    'max_retries': 3,
+    'page_load_timeout': 15,
+    'retry_delay': 2,
+    'page_delay': 2,
+    
+    # Debugging
+    'save_debug_html': True,
+    'debug_html_path': 'debug_page.html',
+    
+    # Parsing settings
+    'reviews_per_page': 20
+}
+
 def get_reviews_with_selenium(url, star_filter=None, max_pages=None):
     """Extract reviews from Trustpilot using Selenium (for JavaScript rendered content)"""
     
     all_reviews = []
     page_num = 1
-    max_retries = 3
+    max_retries = CONFIG['max_retries']
     last_page_reached = False
     highest_page_seen = 1
     
     # Set up Chrome options
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Run in headless mode
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--disable-extensions")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
+    for option in CONFIG['chrome_options']:
+        chrome_options.add_argument(option)
     
     # Initialize the driver
     driver = webdriver.Chrome(options=chrome_options)
@@ -42,7 +64,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None):
         driver.get(main_url)
         try:
             # Wait for page to load
-            WebDriverWait(driver, 15).until(
+            WebDriverWait(driver, CONFIG['page_load_timeout']).until(
                 EC.presence_of_element_located((By.TAG_NAME, "article"))
             )
             
@@ -58,8 +80,8 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None):
                         pass
                         
             if total_reviews:
-                # Trustpilot typically shows 20 reviews per page
-                estimated_total_pages = (total_reviews + 19) // 20
+                # Calculate estimated pages based on reviews per page
+                estimated_total_pages = (total_reviews + CONFIG['reviews_per_page'] - 1) // CONFIG['reviews_per_page']
                 print(f"Found approximately {total_reviews} total reviews across ~{estimated_total_pages} pages")
             else:
                 print("Couldn't determine total review count, will iterate until no more pages are found")
@@ -113,35 +135,35 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None):
                     
                     # Wait for content to load - try multiple selectors
                     try:
-                        WebDriverWait(driver, 15).until(
+                        WebDriverWait(driver, CONFIG['page_load_timeout']).until(
                             EC.presence_of_element_located((By.TAG_NAME, "article"))
                         )
                         page_loaded = True
                     except TimeoutException:
                         try:
-                            WebDriverWait(driver, 10).until(
+                            WebDriverWait(driver, CONFIG['page_load_timeout'] - 5).until(
                                 EC.presence_of_element_located((By.CSS_SELECTOR, "div.styles_reviewCard__hcAvl"))
                             )
                             page_loaded = True
                         except TimeoutException:
                             print(f"Timeout waiting for page {page_num} to load, retrying...")
                             retry_count += 1
-                            time.sleep(2)  # Wait before retry
+                            time.sleep(CONFIG['retry_delay'])  # Wait before retry
                 
                 except Exception as e:
                     print(f"Error loading page {page_num}: {e}")
                     retry_count += 1
-                    time.sleep(2)  # Wait before retry
+                    time.sleep(CONFIG['retry_delay'])  # Wait before retry
             
             if not page_loaded:
                 print(f"Failed to load page {page_num} after {max_retries} attempts")
                 break
                 
             # Save HTML for debugging (first page only)
-            if page_num == 1:
-                with open("debug_page.html", "w", encoding="utf-8") as f:
+            if page_num == 1 and CONFIG['save_debug_html']:
+                with open(CONFIG['debug_html_path'], "w", encoding="utf-8") as f:
                     f.write(driver.page_source)
-                print("Saved first page HTML to debug_page.html for inspection")
+                print(f"Saved first page HTML to {CONFIG['debug_html_path']} for inspection")
             
             # Detect if we've been redirected to another page (indicating we've gone beyond the last page)
             current_url = driver.current_url
@@ -425,7 +447,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None):
             # Move to the next page
             page_num += 1
             print(f"Moving to page {page_num}")
-            time.sleep(2)  # Delay between pages to be polite
+            time.sleep(CONFIG['page_delay'])  # Delay between pages to be polite
     
     finally:
         # Clean up

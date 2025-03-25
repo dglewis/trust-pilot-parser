@@ -3,9 +3,9 @@
 ## Project Overview
 This tool aims to extract reviews from Trustpilot pages, specifically targeting reviews for Data Engineer Academy (dataengineeracademy.com) with star ratings of 1, 4, and 5.
 
-## Requirements
+## Implemented Features
 
-### Data Collection Requirements
+### Data Collection
 1. **Review Content Information**:
    - Full review text content
    - Star rating (1-5)
@@ -21,46 +21,56 @@ This tool aims to extract reviews from Trustpilot pages, specifically targeting 
    - Determine reviews per page
    - Navigate through all pages systematically
 
-### Technical Requirements
-1. **Parsing Capabilities**:
+3. **Technical Capabilities**:
    - Extract data from HTML structure
-   - Handle potential AJAX-loaded content
-   - Process any required JavaScript rendering
-
-2. **Resilience**:
+   - Handle JavaScript-loaded content
+   - Process required JavaScript rendering
    - Implement error handling
    - Add retry logic for failed requests
+
+4. **Output Formats**:
+   - Store reviews in structured JSON format
+   - Export data as CSV
+   - Include all review metadata
+   - Maintain hierarchical structure
+
+5. **Data Visualization**:
+   - Generate time-series graphs of review ratings
+   - Display rating distribution by time period
+   - Export visualizations as image files
+
+### Configuration Options
+1. **Scraper Configuration**:
+   - Browser settings
+   - Request parameters
+   - Retry logic
+   - Debugging options
+
+2. **Visualization Configuration**:
+   - Graph dimensions
+   - Output file paths
+   - Visual styling parameters
+   - Axis ranges
+
+## Future Enhancements
+
+### Technical Enhancements
+1. **Resilience**:
+   - Add rate limit detection
+   - Implement user agent rotation
    - Log errors and exceptions
 
-3. **Output Format**:
-   - Store reviews in structured format (JSON/CSV)
-   - Include all review metadata
-   - Maintain hierarchical structure where appropriate
+2. **Data Storage**:
+   - Database storage integration
+   - More data transformation options
 
-## Constraints
-
-### Technical Constraints
-1. **Website Structure Limitations**:
-   - Unknown dynamic content loading mechanisms
-   - Potential JavaScript dependencies
-   - Possible pagination implementation (link-based vs. infinite scroll)
-
-2. **Rate Limiting and Anti-Scraping Considerations**:
-   - Unknown request rate limitations
-   - Potential IP blocking mechanisms
-   - CAPTCHA or other anti-bot technologies
-
-3. **Performance Constraints**:
-   - Balancing speed with politeness (not overwhelming the server)
-   - Efficient processing of potentially large datasets
-
-### Legal and Ethical Constraints
+### Legal and Compliance Checks
 1. **Terms of Service Compliance**:
-   - Trustpilot's scraping policies not yet reviewed
-   - Robots.txt restrictions to be determined
-   - Potential copyright considerations for review content
+   - Review Trustpilot's scraping policies
+   - Analyze robots.txt restrictions
+   - Address copyright considerations for review content
 
-2. **Data Usage Limitations**:
+2. **Data Usage Guidelines**:
    - Personal/internal use vs. commercial redistribution
    - Storage and retention policies
    - Privacy considerations for reviewer identities
@@ -68,24 +78,14 @@ This tool aims to extract reviews from Trustpilot pages, specifically targeting 
 ## Outstanding Questions
 
 1. **Website Architecture**:
-   - Is content statically rendered or loaded via JavaScript?
-   - What specific HTML structure contains the review data?
-   - How is pagination implemented technically?
+   - How frequently does Trustpilot change their HTML structure?
+   - Are there regional differences in site structure?
 
 2. **Anti-Scraping Measures**:
    - Does Trustpilot actively block scrapers?
    - Are there known techniques to ethically work within their system?
    - Is there an official API that could be used instead?
 
-3. **Data Completeness**:
-   - Are there hidden or collapsed sections in reviews?
-   - Does the site load all review content at once or progressively?
-   - Are there differences in data structure between different star ratings?
-
-4. **Legal Position**:
+3. **Legal Position**:
    - What are the specific terms in Trustpilot's ToS regarding data collection?
-   - Are there fair use considerations for the intended use case?
-
-5. **Alternative Approaches**:
-   - Would using Trustpilot's official API be feasible?
-   - Are there existing libraries or tools specifically for Trustpilot? 
+   - Are there fair use considerations for the intended use case? 
