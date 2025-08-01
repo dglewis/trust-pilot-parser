@@ -3,6 +3,23 @@ import argparse
 import re
 from collections import Counter
 from textblob import TextBlob
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.decomposition import LatentDirichletAllocation
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+import numpy as np
+import requests
+import nltk
+
+# Download necessary NLTK data
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+try:
+    nltk.data.find('corpora/wordnet')
+except LookupError:
+    nltk.download('wordnet')
 
 # Common words to exclude from theme analysis
 STOP_WORDS = [
@@ -23,6 +40,88 @@ STOP_WORDS = [
     'can', 'will', 'just', 'don', 'should', 'now', 'dea', 'academy', 'course', 'data', 'learning'
 ]
 
+def generate_llm_summary(analysis_results):
+    """Generates a human-like summary using a local LLM via Ollama."""
+    prompt = f"""
+    You are a professional data analyst. Based on the following Trustpilot review analysis, provide a concise, human-like summary.
+    Your summary should include:
+    1. A brief overview of the sentiment distribution.
+    2. Key insights from the positive reviews, referencing the discovered topics.
+    3. Key insights from the negative reviews, referencing the discovered topics and specific issues raised.
+    4. A concluding paragraph that synthesizes the findings and offers a balanced perspective.
+
+    **Analysis Data:**
+    - Total Reviews: {analysis_results['total_reviews']}
+    - Positive (4-5 Star) Reviews Percentage: {analysis_results['positive_percentage']:.1f}%
+    
+    **Positive Review Topics:**
+    {analysis_results['positive_topics']}
+
+    **Negative Review Topics:**
+    {analysis_results['negative_topics']}
+
+    **Full text of negative reviews:**
+    {analysis_results['low_star_reviews']}
+    """
+
+    try:
+        response = requests.post(
+            'http://localhost:11434/api/generate',
+            json={
+                'model': 'llama3.2:latest',
+                'prompt': prompt,
+                'stream': False
+            }
+        )
+        response.raise_for_status()
+        return response.json().get('response', "Error: Could not get a valid response from the LLM.")
+    except requests.exceptions.RequestException as e:
+        return f"Error: Could not connect to the Ollama server. Please ensure Ollama is running. Details: {e}"
+
+
+def lemmatize_text(text):
+    lemmatizer = WordNetLemmatizer()
+    return ' '.join([lemmatizer.lemmatize(word) for word in word_tokenize(text.lower()) if word.isalpha() and word not in STOP_WORDS])
+
+def perform_topic_modeling(reviews, num_topics=3, num_words=5):
+    """Performs topic modeling and finds representative reviews."""
+    if not reviews or len(reviews) < num_topics:
+        return []
+
+    docs = [lemmatize_text(review['text']) for review in reviews]
+    
+    if not any(docs):
+        return []
+
+    vectorizer = CountVectorizer(stop_words='english', max_df=0.9, min_df=2)
+    try:
+        X = vectorizer.fit_transform(docs)
+    except ValueError:
+        return []
+
+    if X.shape[0] == 0:
+        return []
+
+    lda = LatentDirichletAllocation(n_components=num_topics, random_state=42)
+    doc_topic_dist = lda.fit_transform(X)
+
+    topics = []
+    feature_names = vectorizer.get_feature_names_out()
+    for topic_idx, topic_dist in enumerate(lda.components_):
+        top_words = [feature_names[i] for i in topic_dist.argsort()[:-num_words - 1:-1]]
+        
+        # Find the most representative review for this topic
+        representative_doc_index = np.argmax(doc_topic_dist[:, topic_idx])
+        representative_review = reviews[representative_doc_index]['text']
+        
+        topics.append({
+            'topic_num': topic_idx + 1,
+            'keywords': ', '.join(top_words),
+            'representative_review': representative_review
+        })
+    
+    return topics
+
 def analyze_sentiment(text):
     """
     Analyzes the sentiment of a given text.
@@ -33,63 +132,45 @@ def analyze_sentiment(text):
     analysis = TextBlob(text)
     return analysis.sentiment.polarity
 
-def find_common_themes(reviews, num_themes=10):
-    """
-    Finds common themes in a list of reviews.
-    Returns a list of the most common words.
-    """
-    all_text = ' '.join([review['text'] for review in reviews])
-    words = re.findall(r'\b\w+\b', all_text.lower())
-    
-    # Filter out stop words
-    filtered_words = [word for word in words if word not in STOP_WORDS and not word.isdigit()]
-    
-    word_counts = Counter(filtered_words)
-    return word_counts.most_common(num_themes)
-
-def generate_report(analysis_results, output_file):
+def generate_report(analysis_results, llm_summary, output_file):
     """Generates a Markdown report of the analysis."""
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("# Trustpilot Review Analysis\n\n")
         
-        # Summary
-        f.write("## Review Analysis by Star Rating\n")
-        f.write(f"- **Total Reviews Analyzed:** {analysis_results['total_reviews']}\n")
-        f.write(f"- **5-Star Reviews:** {len(analysis_results['5_star'])}\n")
-        f.write(f"- **4-Star Reviews:** {len(analysis_results['4_star'])}\n")
-        f.write(f"- **3-Star Reviews:** {len(analysis_results['3_star'])}\n")
-        f.write(f"- **2-Star Reviews:** {len(analysis_results['2_star'])}\n")
-        f.write(f"- **1-Star Reviews:** {len(analysis_results['1_star'])}\n\n")
-
-        # Positive Themes
-        if analysis_results['positive_themes']:
-            f.write("## Common Themes in Positive (4-5 Star) Reviews\n")
-            for theme, count in analysis_results['positive_themes']:
-                f.write(f"- **{theme}:** {count} mentions\n")
-            f.write("\n")
-
-        # Negative Themes
-        if analysis_results['negative_themes']:
-            f.write("## Common Themes in Negative (1-2 Star) Reviews\n")
-            for theme, count in analysis_results['negative_themes']:
-                f.write(f"- **{theme}:** {count} mentions\n")
-            f.write("\n")
+        f.write("## AI-Generated Summary\n\n")
+        f.write(f"{llm_summary}\n\n")
         
-        # Full Negative Reviews
+        f.write("---\n")
+        f.write("## Detailed Analysis\n\n")
+        f.write(f"This report analyzes **{analysis_results['total_reviews']}** reviews. The sentiment is overwhelmingly positive, with **{analysis_results['positive_percentage']:.1f}%** of reviews being 4 or 5 stars. However, a small but significant number of 1-star reviews highlight specific areas for improvement.\n\n")
+
+        # Topic Modeling
+        if analysis_results['positive_topics']:
+            f.write("### Key Themes from Positive Reviews\n")
+            for topic in analysis_results['positive_topics']:
+                f.write(f"**Topic {topic['topic_num']}:** {topic['keywords']}\n")
+                f.write(f"> **Representative Review:** \"*{topic['representative_review'].strip()}*\"\n\n")
+
+        if analysis_results['negative_topics']:
+            f.write("### Key Themes from Negative Reviews\n")
+            for topic in analysis_results['negative_topics']:
+                f.write(f"**Topic {topic['topic_num']}:** {topic['keywords']}\n")
+                f.write(f"> **Representative Review:** \"*{topic['representative_review'].strip()}*\"\n\n")
+
+        f.write("---\n")
+        f.write("### Full Text of Negative (1-2 Star) Reviews\n")
         if analysis_results['low_star_reviews']:
-            f.write("## Full Text of Negative (1-2 Star) Reviews\n")
             for i, review in enumerate(analysis_results['low_star_reviews'], 1):
-                f.write(f"\n### Review #{i}\n")
-                f.write(f"- **Stars:** {review['stars']}\n")
-                f.write(f"- **Sentiment Score:** {review['sentiment']:.2f}\n")
-                f.write(f"- **Text:** {review['text']}\n")
-                f.write("\n---\n")
+                f.write(f"\n**Review #{i} (Stars: {review['stars']})**\n")
+                f.write(f"**Sentiment Score:** {review['sentiment']:.2f}\n\n")
+                f.write(f"{review['text']}\n\n")
+
 
 def main():
     """Main function to analyze reviews."""
     parser = argparse.ArgumentParser(description='Analyze sentiment of Trustpilot reviews.')
     parser.add_argument('-i', '--input', required=True, help='Input JSON file with reviews')
-    parser.add_argument('-o', '--output', help='Output Markdown report file')
+    parser.add_argument('-o', '--output', required=True, help='Output Markdown report file')
     args = parser.parse_args()
 
     try:
@@ -125,52 +206,23 @@ def main():
     
     low_star_reviews = one_star_reviews + two_star_reviews
     high_star_reviews = four_star_reviews + five_star_reviews
+    
+    positive_percentage = (len(high_star_reviews) / len(reviews)) * 100 if reviews else 0
 
     analysis_results = {
         'total_reviews': len(reviews),
-        '5_star': five_star_reviews,
-        '4_star': four_star_reviews,
-        '3_star': three_star_reviews,
-        '2_star': two_star_reviews,
-        '1_star': one_star_reviews,
+        'positive_percentage': positive_percentage,
         'low_star_reviews': low_star_reviews,
-        'positive_themes': find_common_themes(high_star_reviews) if high_star_reviews else [],
-        'negative_themes': find_common_themes(low_star_reviews) if low_star_reviews else [],
+        'positive_topics': perform_topic_modeling(high_star_reviews),
+        'negative_topics': perform_topic_modeling(low_star_reviews),
     }
 
-    if args.output:
-        generate_report(analysis_results, args.output)
-        print(f"Analysis report saved to {args.output}")
-    else:
-        # Print to console if no output file is specified
-        print(f"--- REVIEW ANALYSIS BY STAR RATING ---")
-        print(f"Total reviews analyzed: {len(reviews)}")
-        print(f"5-Star Reviews: {len(five_star_reviews)}")
-        print(f"4-Star Reviews: {len(four_star_reviews)}")
-        print(f"3-Star Reviews: {len(three_star_reviews)}")
-        print(f"2-Star Reviews: {len(two_star_reviews)}")
-        print(f"1-Star Reviews: {len(one_star_reviews)}\n")
+    print("Generating AI summary with local LLM...")
+    llm_summary = generate_llm_summary(analysis_results)
+    
+    generate_report(analysis_results, llm_summary, args.output)
+    print(f"Intelligent analysis report with AI summary saved to {args.output}")
 
-
-        if high_star_reviews:
-            print("--- COMMON THEMES IN POSITIVE (4-5 STAR) REVIEWS ---")
-            for theme, count in analysis_results['positive_themes']:
-                print(f"- {theme}: {count} mentions")
-        
-        if low_star_reviews:
-            print("\n--- COMMON THEMES IN NEGATIVE (1-2 STAR) REVIEWS ---")
-            if analysis_results['negative_themes']:
-                for theme, count in analysis_results['negative_themes']:
-                    print(f"- {theme}: {count} mentions")
-            else:
-                print("No significant common themes found in negative reviews.")
-
-            print("\n--- FULL TEXT OF NEGATIVE (1-2 STAR) REVIEWS ---")
-            for i, review in enumerate(low_star_reviews, 1):
-                print(f"\nReview #{i}:")
-                print(f"  Stars: {review['stars']}")
-                print(f"  Sentiment Score: {review['sentiment']:.2f}")
-                print(f"  Text: {review['text']}")
 
 if __name__ == '__main__':
     main()

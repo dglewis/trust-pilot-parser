@@ -2,6 +2,6 @@ requests
 beautifulsoup4
 selenium
 textblob
-gensim
 scikit-learn
 nltk
+numpy
