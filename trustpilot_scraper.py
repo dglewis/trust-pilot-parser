@@ -26,10 +26,10 @@ CONFIG = {
     ],
     
     # Request settings
-    'max_retries': 3,
-    'page_load_timeout': 15,
+    'max_retries': 1,
+    'page_load_timeout': 10,
     'retry_delay': 2,
-    'page_delay': 2,
+    'page_delay': 5,
     
     # Debugging
     'save_debug_html': False,  # Default to false
@@ -68,7 +68,7 @@ def update_config_from_args(args):
     if args.max_retries:
         CONFIG['max_retries'] = args.max_retries
 
-def get_reviews_with_selenium(url, star_filter=None, max_pages=None):
+def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental_file=None, output_format='json'):
     """Extract reviews from Trustpilot using Selenium (for JavaScript rendered content)"""
     
     all_reviews = []
@@ -308,6 +308,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None):
                 }
                 
                 # Process each review element
+                page_reviews = [] # Initialize page_reviews here
                 for review_element in review_elements:
                     try:
                         # Create a comprehensive review object
@@ -486,7 +487,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None):
                         
                         # Only add reviews with text or a star rating
                         if review['text'] or review['stars']:
-                            all_reviews.append(review)
+                            page_reviews.append(review) # Append to page_reviews
                             reviews_by_page[page_num]['extracted'] += 1
                             if CONFIG['verbose']:
                                 print(f"Extracted review: {review['stars']} stars, {len(review['text'])} chars")
@@ -529,6 +530,15 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None):
             page_num += 1
             # print(f"Moving to page {page_num}")
             time.sleep(CONFIG['page_delay'])  # Delay between pages to be polite
+
+            # After processing the page:
+            if page_reviews:
+                all_reviews.extend(page_reviews)
+                if incremental_file:
+                    save_reviews_incremental(page_reviews, incremental_file, is_jsonl=(output_format == 'json'))
+                consecutive_empty_pages = 0
+            else:
+                consecutive_empty_pages += 1
     
     finally:
         # Clean up
@@ -665,6 +675,42 @@ def parse_arguments():
     
     return parser.parse_args()
 
+def save_reviews_incremental(reviews, filename, is_jsonl=True):
+    """Save a batch of reviews incrementally to file"""
+    mode = 'a' if os.path.exists(filename) else 'w'
+    with open(filename, mode, encoding='utf-8', newline='') as f:
+        if is_jsonl:
+            for review in reviews:
+                json.dump(review, f, ensure_ascii=False)
+                f.write('\n')
+        else:  # CSV
+            # Define the CSV fields - flatten the nested structure
+            fieldnames = [
+                'stars', 'title', 'text', 'company_response', 
+                'reviewer_name', 'reviewer_location', 'reviewer_reviews_count',
+                'date_published', 'date_experience', 
+                'verified', 'useful_votes', 'page_number'
+            ]
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            if mode == 'w':
+                writer.writeheader()
+            for review in reviews:
+                flat_review = {
+                    'stars': review.get('stars'),
+                    'title': review.get('title', ''),
+                    'text': review.get('text', ''),
+                    'company_response': review.get('company_response', ''),
+                    'reviewer_name': review.get('reviewer', {}).get('name', ''),
+                    'reviewer_location': review.get('reviewer', {}).get('location', ''),
+                    'reviewer_reviews_count': review.get('reviewer', {}).get('reviews_count'),
+                    'date_published': review.get('date', {}).get('published', ''),
+                    'date_experience': review.get('date', {}).get('experience', ''),
+                    'verified': review.get('metadata', {}).get('verified', False),
+                    'useful_votes': review.get('metadata', {}).get('useful_votes', 0),
+                    'page_number': review.get('metadata', {}).get('page_number')
+                }
+                writer.writerow(flat_review)
+
 def main():
     """Main function"""
     args = parse_arguments()
@@ -685,9 +731,6 @@ def main():
             url += f'?{stars_param}'
     
     # Get the reviews
-    reviews = get_reviews(url, args.stars, args.max_pages)
-    
-    # Save the reviews in the specified format
     output_file = args.output
     
     # Ensure output file has the correct extension
@@ -696,7 +739,12 @@ def main():
     elif args.format == 'csv' and not output_file.endswith('.csv'):
         output_file = os.path.splitext(output_file)[0] + '.csv'
     
-    # Save in the appropriate format
+    # Set incremental file
+    incremental_file = output_file + '.tmp' # Use a temporary file for incremental saving
+    
+    reviews = get_reviews_with_selenium(url, args.stars, args.max_pages, incremental_file=incremental_file, output_format=args.format)
+    
+    # Save the reviews in the specified format
     if args.format == 'json':
         save_reviews_json(reviews, output_file)
     else:  # csv

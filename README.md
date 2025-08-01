@@ -94,6 +94,30 @@ Enable debug mode for troubleshooting:
 uv run python trustpilot_scraper.py "https://www.trustpilot.com/review/dataengineeracademy.com" --debug
 ```
 
+### Sentiment Analysis and Reporting
+
+After extracting reviews, you can use the `analyze_reviews.py` script to perform sentiment analysis and generate a detailed report.
+
+#### Generating a Markdown Report
+
+To generate a full analysis report in Markdown format, use the `-o` or `--output` option:
+
+```bash
+uv run python analyze_reviews.py -i tp_dea_reviews.json -o analysis_report.md
+```
+
+The report will include:
+- A summary of review distribution by star rating.
+- Common themes from positive and negative reviews.
+- The full text of all 1- and 2-star reviews.
+
+#### Viewing Analysis in the Console
+
+If you prefer to see the analysis directly in your terminal, simply omit the `-o` flag:
+```bash
+uv run python analyze_reviews.py -i tp_dea_reviews.json
+```
+
 ### Data Visualization
 
 After extracting reviews to a JSON file, you can generate visualizations using the `gen_graph.py` script:
