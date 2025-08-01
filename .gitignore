@@ -1,4 +1,8 @@
-logs
-.venv
+# Ignore virtual environment
+.venv/
 
+# Ignore output files
+output/
 
+# Ignore system files
+.DS_Store
