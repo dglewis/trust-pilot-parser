@@ -39,11 +39,21 @@ pip install -r requirements.txt
 
 ### Review Extraction
 
+The recommended way to run the scripts is by using `uv run`, which executes commands within the project's virtual environment without needing to activate it first.
+
 Basic usage:
+
+```bash
+uv run python trustpilot_scraper.py "https://www.trustpilot.com/review/some-company.com"
+```
+
+Alternatively, if you have activated the virtual environment (`source .venv/bin/activate`), you can use `python` directly:
 
 ```bash
 python trustpilot_scraper.py "https://www.trustpilot.com/review/some-company.com"
 ```
+
+All examples below use the recommended `uv run` method.
 
 #### Command-line Options
 
@@ -66,22 +76,22 @@ python trustpilot_scraper.py "https://www.trustpilot.com/review/some-company.com
 
 Extract all reviews and save as JSON:
 ```bash
-python trustpilot_scraper.py "https://www.trustpilot.com/review/dataengineeracademy.com"
+uv run python trustpilot_scraper.py "https://www.trustpilot.com/review/dataengineeracademy.com"
 ```
 
 Extract only 1-star and 5-star reviews and save as CSV:
 ```bash
-python trustpilot_scraper.py "https://www.trustpilot.com/review/dataengineeracademy.com" -s 1 5 -f csv -o "filtered_reviews.csv"
+uv run python trustpilot_scraper.py "https://www.trustpilot.com/review/dataengineeracademy.com" -s 1 5 -f csv -o "filtered_reviews.csv"
 ```
 
 Extract reviews from the first 3 pages only:
 ```bash
-python trustpilot_scraper.py "https://www.trustpilot.com/review/dataengineeracademy.com" -p 3
+uv run python trustpilot_scraper.py "https://www.trustpilot.com/review/dataengineeracademy.com" -p 3
 ```
 
 Enable debug mode for troubleshooting:
 ```bash
-python trustpilot_scraper.py "https://www.trustpilot.com/review/dataengineeracademy.com" --debug
+uv run python trustpilot_scraper.py "https://www.trustpilot.com/review/dataengineeracademy.com" --debug
 ```
 
 ### Data Visualization
@@ -89,7 +99,7 @@ python trustpilot_scraper.py "https://www.trustpilot.com/review/dataengineeracad
 After extracting reviews to a JSON file, you can generate visualizations using the `gen_graph.py` script:
 
 ```bash
-python gen_graph.py -i your_reviews.json -o output_graph.png
+uv run python gen_graph.py -i your_reviews.json -o output_graph.png
 ```
 
 #### Command-line Options
