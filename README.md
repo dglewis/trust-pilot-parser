@@ -94,22 +94,23 @@ Enable debug mode for troubleshooting:
 uv run python trustpilot_scraper.py "https://www.trustpilot.com/review/dataengineeracademy.com" --debug
 ```
 
-### Sentiment Analysis and Reporting
+### Intelligent Review Analysis and Reporting
 
-After extracting reviews, you can use the `analyze_reviews.py` script to perform sentiment analysis and generate a detailed report.
+After extracting reviews, you can use the `analyze_reviews.py` script to perform a comprehensive, AI-powered analysis. This script goes beyond simple sentiment scores by leveraging a local Large Language Model (LLM) via Ollama to generate a nuanced, human-like summary of the findings.
 
-#### Generating a Markdown Report
+#### Generating an Intelligent Analysis Report
 
-To generate a full analysis report in Markdown format, use the `-o` or `--output` option:
+To generate a full analysis report in Markdown format, you must specify both an input and an output file.
 
 ```bash
-uv run python analyze_reviews.py -i tp_dea_reviews.json -o analysis_report.md
+uv run python analyze_reviews.py -i output/tp_dea_reviews.json -o output/analysis_report.md
 ```
 
-The report will include:
-- A summary of review distribution by star rating.
-- Common themes from positive and negative reviews.
-- The full text of all 1- and 2-star reviews.
+The report provides a multi-faceted view of the customer feedback, including:
+- An **AI-Generated Summary** offering a high-level, interpretive overview of the key findings.
+- A **Detailed Quantitative Analysis** of the review distribution.
+- **Key Themes from Positive and Negative Reviews**, identified using topic modeling, complete with representative example reviews for each theme.
+- The **Full Text of all 1- and 2-star reviews** for detailed manual inspection.
 
 #### Viewing Analysis in the Console
 
