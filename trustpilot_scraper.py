@@ -6,6 +6,9 @@ import re
 import csv
 import argparse
 import os
+import logging
+import urllib.robotparser
+from urllib.parse import urljoin, urlparse
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -13,8 +16,47 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
+# Set up logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/scraper.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# LEGAL COMPLIANCE WARNING
+LEGAL_WARNING = """
+⚠️  LEGAL COMPLIANCE WARNING ⚠️
+
+This scraper may NOT be compliant with Trustpilot's Terms of Service and robots.txt.
+
+RISKS:
+- Trustpilot's robots.txt prohibits general automated access (User-agent: * Disallow: /)
+- Terms of Service explicitly prohibit web scraping and data mining
+- Potential legal action, account termination, or technical blocking
+
+RECOMMENDATIONS:
+1. Use Trustpilot's official Business API instead
+2. Seek explicit written permission from Trustpilot
+3. Consider alternative, compliant data sources
+
+By continuing, you acknowledge these risks and take full legal responsibility.
+Consult with legal counsel before proceeding.
+
+Continue at your own risk.
+"""
+
 # Configuration parameters
 CONFIG = {
+    # Compliance settings
+    'respect_robots_txt': True,
+    'min_crawl_delay': 30,  # Minimum 30 seconds between requests
+    'user_agent': 'TrustpilotParser/1.0 (Research Purpose; +https://github.com/yourproject)',
+    'max_concurrent_requests': 1,  # Single-threaded for politeness
+    
     # Browser settings
     'chrome_options': [
         '--headless',
@@ -22,33 +64,107 @@ CONFIG = {
         '--window-size=1920,1080',
         '--disable-extensions',
         '--no-sandbox',
-        '--disable-dev-shm-usage'
+        '--disable-dev-shm-usage',
+        '--disable-blink-features=AutomationControlled',
+        '--user-agent=TrustpilotParser/1.0 (Research Purpose)'
     ],
     
     # Request settings
-    'max_retries': 3,
-    'page_load_timeout': 15,
-    'retry_delay': 2,
-    'page_delay': 2,
+    'max_retries': 2,  # Reduced for politeness
+    'page_load_timeout': 30,  # Increased timeout
+    'retry_delay': 60,  # Increased delay between retries
+    'page_delay': 30,  # Increased delay between pages
     
     # Debugging
-    'save_debug_html': False,  # Default to false
+    'save_debug_html': False,
     'debug_html_path': 'debug_page.html',
-    'verbose': False,  # Default to false
+    'verbose': False,
     
     # Parsing settings
     'reviews_per_page': 20,
     
     # Pagination handling
-    'empty_pages_before_stop': 3,  # Number of consecutive empty pages before stopping
-    'force_continue_to_estimated_pages': True,  # Continue until we reach estimated page count
-    'min_reviews_last_page': 10  # If we find fewer than this number of reviews, assume we're on the last page
+    'empty_pages_before_stop': 2,  # Reduced for politeness
+    'force_continue_to_estimated_pages': False,  # More conservative
+    'min_reviews_last_page': 10,
+    
+    # Legal compliance
+    'require_robots_check': True,
+    'require_legal_acknowledgment': True,
+    'log_all_requests': True,
 }
+
+# Robots.txt checker
+class RobotsChecker:
+    def __init__(self, user_agent=None):
+        self.user_agent = user_agent or CONFIG['user_agent']
+        self.robots_parsers = {}
+    
+    def can_fetch(self, url):
+        """Check if the URL can be fetched according to robots.txt"""
+        try:
+            parsed_url = urlparse(url)
+            base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+            
+            if base_url not in self.robots_parsers:
+                robots_url = urljoin(base_url, '/robots.txt')
+                rp = urllib.robotparser.RobotFileParser()
+                rp.set_url(robots_url)
+                rp.read()
+                self.robots_parsers[base_url] = rp
+                logger.info(f"Loaded robots.txt from {robots_url}")
+            
+            can_fetch = self.robots_parsers[base_url].can_fetch(self.user_agent, url)
+            logger.info(f"Robots.txt check for {url}: {'ALLOWED' if can_fetch else 'DISALLOWED'}")
+            return can_fetch
+            
+        except Exception as e:
+            logger.error(f"Error checking robots.txt for {url}: {e}")
+            # Conservative approach: if we can't check, assume disallowed
+            return False
+
+def show_legal_warning():
+    """Display legal warning and require acknowledgment"""
+    print(LEGAL_WARNING)
+    
+    if CONFIG['require_legal_acknowledgment']:
+        while True:
+            response = input("Do you acknowledge these risks and wish to continue? (yes/no): ").lower().strip()
+            if response == 'yes':
+                logger.warning("User acknowledged legal risks and chose to continue")
+                print("⚠️  Legal risks acknowledged. Proceeding with extreme caution.")
+                break
+            elif response == 'no':
+                logger.info("User declined to proceed due to legal risks")
+                print("Smart choice. Exiting.")
+                exit(0)
+            else:
+                print("Please enter 'yes' or 'no'")
+
+def check_compliance(url):
+    """Check basic compliance requirements"""
+    issues = []
+    
+    # Check robots.txt
+    if CONFIG['respect_robots_txt']:
+        robots_checker = RobotsChecker()
+        if not robots_checker.can_fetch(url):
+            issues.append("❌ ROBOTS.TXT VIOLATION: URL is disallowed by robots.txt")
+    
+    # Check if it's Trustpilot
+    if 'trustpilot.com' in url.lower():
+        issues.append("❌ TRUSTPILOT ToS VIOLATION: Terms of Service prohibit automated access")
+        issues.append("❌ LEGAL RISK: High risk of legal action or technical blocking")
+    
+    # Check crawl delay
+    if CONFIG['page_delay'] < 30:
+        issues.append("⚠️  INSUFFICIENT DELAY: Recommend minimum 30 seconds between requests")
+    
+    return issues
 
 # Function to update config from command line arguments
 def update_config_from_args(args):
     """Update the CONFIG dictionary based on command line arguments"""
-    # Set debug mode if specified
     if args.debug:
         CONFIG['verbose'] = True
         CONFIG['save_debug_html'] = True
@@ -60,517 +176,316 @@ def update_config_from_args(args):
         CONFIG['page_load_timeout'] = args.page_load_timeout
     
     if args.retry_delay:
-        CONFIG['retry_delay'] = args.retry_delay
+        CONFIG['retry_delay'] = max(args.retry_delay, 60)  # Minimum 60 seconds
     
     if args.page_delay:
-        CONFIG['page_delay'] = args.page_delay
+        CONFIG['page_delay'] = max(args.page_delay, 30)  # Minimum 30 seconds
     
     if args.max_retries:
-        CONFIG['max_retries'] = args.max_retries
+        CONFIG['max_retries'] = min(args.max_retries, 3)  # Maximum 3 retries
+
+    # Force compliance overrides
+    if args.skip_robots_check:
+        CONFIG['respect_robots_txt'] = False
+        logger.warning("⚠️  Robots.txt checking disabled by user")
+    
+    if args.skip_legal_warning:
+        CONFIG['require_legal_acknowledgment'] = False
+        logger.warning("⚠️  Legal warning disabled by user")
+
+def log_request(url, response_code=None, error=None):
+    """Log all requests for audit purposes"""
+    if CONFIG['log_all_requests']:
+        timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+        log_entry = {
+            'timestamp': timestamp,
+            'url': url,
+            'response_code': response_code,
+            'error': str(error) if error else None,
+            'user_agent': CONFIG['user_agent']
+        }
+        
+        # Ensure logs directory exists
+        os.makedirs('logs', exist_ok=True)
+        
+        # Write to audit log
+        with open('logs/request_audit.jsonl', 'a', encoding='utf-8') as f:
+            f.write(json.dumps(log_entry) + '\n')
 
 def get_reviews_with_selenium(url, star_filter=None, max_pages=None):
-    """Extract reviews from Trustpilot using Selenium (for JavaScript rendered content)"""
+    """Extract reviews from Trustpilot using Selenium with compliance features"""
+    
+    # Legal and compliance checks
+    show_legal_warning()
+    
+    compliance_issues = check_compliance(url)
+    if compliance_issues:
+        print("\n🚨 COMPLIANCE ISSUES DETECTED:")
+        for issue in compliance_issues:
+            print(f"   {issue}")
+        print()
+        
+        if CONFIG['require_robots_check'] and any('ROBOTS.TXT VIOLATION' in issue for issue in compliance_issues):
+            print("❌ Cannot proceed: robots.txt violations detected")
+            print("Use --skip-robots-check to override (NOT RECOMMENDED)")
+            return []
     
     all_reviews = []
     page_num = 1
     max_retries = CONFIG['max_retries']
     last_page_reached = False
-    highest_page_seen = 1
-    reviews_by_page = {}  # Track reviews found on each page for debugging
-    consecutive_empty_pages = 0  # Track consecutive pages with no reviews
-    estimated_total_pages = 0  # Will be calculated from total_reviews
+    robots_checker = RobotsChecker() if CONFIG['respect_robots_txt'] else None
     
-    # Set up Chrome options
+    # Set up Chrome options with compliance-focused user agent
     chrome_options = Options()
     for option in CONFIG['chrome_options']:
         chrome_options.add_argument(option)
     
-    # Initialize the driver
     driver = webdriver.Chrome(options=chrome_options)
     
     try:
-        # First, load the main page to get total review count and calculate total pages
+        # Initial compliance check
+        if robots_checker and not robots_checker.can_fetch(url):
+            logger.error("❌ Robots.txt check failed. Aborting.")
+            return []
+        
+        # Load first page
         main_url = url.split('?')[0] if '?' in url else url
         base_url = url
         
+        logger.info(f"🚀 Starting compliant crawl of {main_url}")
+        log_request(main_url)
+        
         driver.get(main_url)
+        
+        # Respectful delay after initial load
+        logger.info(f"⏳ Respectful delay: {CONFIG['page_delay']} seconds")
+        time.sleep(CONFIG['page_delay'])
+        
         try:
-            # Wait for page to load
             WebDriverWait(driver, CONFIG['page_load_timeout']).until(
                 EC.presence_of_element_located((By.TAG_NAME, "article"))
             )
             
-            # Try to find the total review count
-            total_reviews_element = driver.find_elements(By.CSS_SELECTOR, ".typography_body-l, .typography_heading-s, span[data-reviews-count-typography]")
+            # Try to get total review count (for estimation only)
             total_reviews = 0
-            
-            # First try to find the review count from the main page
-            for element in total_reviews_element:
-                try:
-                    text = element.text.strip()
-                    if "review" in text.lower():
-                        # Try to extract the number from formats like "371 reviews" or "371 total reviews"
-                        matches = re.search(r'(\d[\d,]+)', text)
-                        if matches:
-                            # Remove commas and convert to int
-                            total_reviews = int(matches.group(1).replace(',', ''))
-                            print(f"Found total reviews from main page: {total_reviews}")
-                            break
-                except Exception as e:
-                    if CONFIG['verbose']:
-                        print(f"Error parsing review count text: {e}")
-            
-            # If not found in text, look for specific attribute
-            if total_reviews == 0:
-                try:
-                    count_elements = driver.find_elements(By.CSS_SELECTOR, "[data-service-review-count], [data-reviews-count-typography]")
-                    for elem in count_elements:
-                        data_count = elem.get_attribute("data-service-review-count")
-                        if data_count and data_count.isdigit():
-                            total_reviews = int(data_count)
-                            print(f"Found total reviews from data attribute: {total_reviews}")
-                            break
-                except Exception as e:
-                    if CONFIG['verbose']:
-                        print(f"Error extracting review count from data attribute: {e}")
-                        
-            if total_reviews:
-                # Calculate estimated pages based on reviews per page
-                estimated_total_pages = (total_reviews + CONFIG['reviews_per_page'] - 1) // CONFIG['reviews_per_page']
-                print(f"Found approximately {total_reviews} total reviews across ~{estimated_total_pages} pages")
-            else:
-                print("Couldn't determine total review count, will iterate until no more pages are found")
-                
-            # Try to find the maximum page number from pagination
             try:
-                pagination_elements = driver.find_elements(By.CSS_SELECTOR, "nav[aria-label='Pagination'] button, nav[aria-label='Pagination'] a, button[data-pagination-button-page], a[data-pagination-button-page]")
-                max_page = 1
-                for element in pagination_elements:
-                    text = element.text.strip()
-                    if text.isdigit():
-                        page_num_int = int(text)
-                        if page_num_int > max_page:
-                            max_page = page_num_int
+                total_reviews_element = driver.find_elements(By.CSS_SELECTOR, ".typography_body-l, .typography_heading-s, span[data-reviews-count-typography]")
                 
-                if max_page > 1:
-                    print(f"Detected {max_page} pages in pagination")
-                    highest_page_seen = max_page
-                    
-                    # If we found pagination but couldn't determine total reviews, estimate based on highest page seen
-                    if total_reviews == 0:
-                        estimated_total_pages = max_page
-                        total_reviews = estimated_total_pages * CONFIG['reviews_per_page']
-                        print(f"Estimating {total_reviews} total reviews from highest visible page number ({max_page})")
+                for element in total_reviews_element:
+                    try:
+                        text = element.text.strip()
+                        if "review" in text.lower():
+                            matches = re.search(r'(\d[\d,]+)', text)
+                            if matches:
+                                total_reviews = int(matches.group(1).replace(',', ''))
+                                logger.info(f"📊 Estimated total reviews: {total_reviews}")
+                                break
+                    except Exception as e:
+                        logger.debug(f"Error parsing review count: {e}")
+                        
             except Exception as e:
-                print(f"Error detecting max pages from pagination: {e}")
-                
-        except Exception as e:
-            print(f"Error determining total pages: {e}")
+                logger.warning(f"Could not determine total review count: {e}")
         
-        # Now iterate through all pages with direct URL access
-        while not last_page_reached:
-            if max_pages and page_num > max_pages:
-                print(f"Reached maximum requested page limit ({max_pages})")
-                break
+        except Exception as e:
+            logger.error(f"Error loading initial page: {e}")
+            return []
+        
+        # Main scraping loop with compliance features
+        while not last_page_reached and (not max_pages or page_num <= max_pages):
             
-            # Check if the page is a 404 by looking at the URL
-            if page_num > 1 and "page=" + str(page_num - 1) in driver.current_url and "404" in driver.title:
-                print(f"Detected 404 page after page {page_num-1}. Stopping scraping.")
-                break
-            
-            # Construct page URL - ensure we're using the right format
+            # Construct page URL
             if '?' in base_url:
                 if 'page=' in base_url:
-                    # Replace existing page parameter
                     page_url = re.sub(r'page=\d+', f'page={page_num}', base_url)
                 else:
-                    # Add page parameter
                     page_url = f"{base_url}&page={page_num}"
             else:
                 page_url = f"{base_url}?page={page_num}"
-                
-            print(f"Scraping page {page_num}: {page_url}")
             
-            # Load the page with retry logic
+            # Check robots.txt for this specific page
+            if robots_checker and not robots_checker.can_fetch(page_url):
+                logger.error(f"❌ Page {page_num} disallowed by robots.txt: {page_url}")
+                break
+            
+            logger.info(f"📄 Processing page {page_num}: {page_url}")
+            log_request(page_url)
+            
+            # Implement respectful retry logic
             retry_count = 0
             page_loaded = False
             
             while retry_count < max_retries and not page_loaded:
                 try:
                     driver.get(page_url)
+                    log_request(page_url, response_code=200)
                     
-                    # Check for 404 page
+                    # Check for 404 or error pages
                     if "404" in driver.title or "Whoops" in driver.title:
-                        print(f"Reached a 404 error page. Stopping at page {page_num-1}.")
+                        logger.info(f"📄 Reached end of available pages at page {page_num}")
                         last_page_reached = True
                         break
                     
-                    # Wait for content to load - try multiple selectors
-                    try:
-                        WebDriverWait(driver, CONFIG['page_load_timeout']).until(
-                            EC.presence_of_element_located((By.TAG_NAME, "article"))
-                        )
-                        page_loaded = True
-                    except TimeoutException:
-                        try:
-                            WebDriverWait(driver, CONFIG['page_load_timeout'] - 5).until(
-                                EC.presence_of_element_located((By.CSS_SELECTOR, "div.styles_reviewCard__hcAvl"))
-                            )
-                            page_loaded = True
-                        except TimeoutException:
-                            # Check for 404 page again after timeout
-                            if "404" in driver.title or "Whoops" in driver.title:
-                                print(f"Reached a 404 error page after timeout. Stopping at page {page_num-1}.")
-                                last_page_reached = True
-                                break
-                                
-                            print(f"Timeout waiting for page {page_num} to load, retrying...")
-                            retry_count += 1
-                            time.sleep(CONFIG['retry_delay'])  # Wait before retry
-                
-                except Exception as e:
-                    print(f"Error loading page {page_num}: {e}")
+                    # Wait for content
+                    WebDriverWait(driver, CONFIG['page_load_timeout']).until(
+                        EC.presence_of_element_located((By.TAG_NAME, "article"))
+                    )
+                    page_loaded = True
+                    
+                except TimeoutException:
+                    logger.warning(f"⏰ Timeout loading page {page_num}, attempt {retry_count + 1}")
                     retry_count += 1
-                    time.sleep(CONFIG['retry_delay'])  # Wait before retry
+                    if retry_count < max_retries:
+                        logger.info(f"⏳ Waiting {CONFIG['retry_delay']} seconds before retry")
+                        time.sleep(CONFIG['retry_delay'])
+                    
+                except Exception as e:
+                    logger.error(f"❌ Error loading page {page_num}: {e}")
+                    log_request(page_url, error=e)
+                    retry_count += 1
+                    if retry_count < max_retries:
+                        time.sleep(CONFIG['retry_delay'])
             
-            # If we've hit a 404 page, stop
-            if last_page_reached:
+            if last_page_reached or not page_loaded:
                 break
-                
-            if not page_loaded:
-                print(f"Failed to load page {page_num} after {max_retries} attempts")
-                consecutive_empty_pages += 1
-                if consecutive_empty_pages >= CONFIG['empty_pages_before_stop']:
-                    print(f"Stopping after {consecutive_empty_pages} consecutive failed page loads")
-                    break
-                page_num += 1
-                continue
-                
-            # Save HTML for debugging (first page only)
+            
+            # Save debug HTML for first page only
             if page_num == 1 and CONFIG['save_debug_html']:
                 with open(CONFIG['debug_html_path'], "w", encoding="utf-8") as f:
                     f.write(driver.page_source)
-                print(f"Saved first page HTML to {CONFIG['debug_html_path']} for inspection")
+                logger.info(f"💾 Debug HTML saved to {CONFIG['debug_html_path']}")
             
-            # Check for "no reviews found" message that indicates we've gone too far
+            # Extract reviews from current page
             try:
-                no_results = driver.find_elements(By.CSS_SELECTOR, 
-                                              "p.typography_body-l:contains('No reviews matching'), div.noResultsContainer, div:contains('No reviews found')")
-                if no_results:
-                    print(f"Found 'No reviews' message on page {page_num}")
-                    last_page_reached = True
-                    break
-            except Exception as e:
-                if CONFIG['verbose']:
-                    print(f"Error checking for no results: {e}")
-            
-            # Detect if we've been redirected to another page (indicating we've gone beyond the last page)
-            current_url = driver.current_url
-            url_page_match = re.search(r'page=(\d+)', current_url)
-            if url_page_match:
-                actual_page = int(url_page_match.group(1))
-                if actual_page != page_num:
-                    print(f"Requested page {page_num} but got redirected to page {actual_page} - we've likely gone beyond the last page")
-                    last_page_reached = True
-                    break
-                
-            # Find all reviews
-            try:
-                # Try different possible selectors
                 review_elements = driver.find_elements(By.TAG_NAME, "article")
                 
                 if not review_elements:
-                    print("No reviews found with article tag. Trying alternative selectors...")
-                    review_elements = driver.find_elements(By.CSS_SELECTOR, "div.styles_reviewCard__hcAvl")
-                
-                if not review_elements:
-                    review_elements = driver.find_elements(By.CSS_SELECTOR, "div.review-card")
-                
-                if not review_elements:
-                    print("No reviews found on this page. This may be the last page.")
+                    logger.warning(f"📭 No reviews found on page {page_num}")
                     last_page_reached = True
                     break
                 
-                # If we're on a page that has fewer reviews than expected, we're likely on the last page
-                if len(review_elements) < CONFIG['reviews_per_page'] and page_num > 1:
-                    print(f"Found only {len(review_elements)} reviews on page {page_num} (fewer than standard {CONFIG['reviews_per_page']})")
-                    print(f"This indicates we're on the last page of reviews")
-                    last_page_reached = True
+                logger.info(f"🔍 Found {len(review_elements)} review elements on page {page_num}")
                 
-                print(f"Found {len(review_elements)} review elements on page {page_num}")
-                
-                # Initialize page stats
-                reviews_by_page[page_num] = {
-                    'raw_elements': len(review_elements),
-                    'extracted': 0,
-                    'filtered': 0,
-                    'errors': 0
-                }
-                
-                # Process each review element
+                page_reviews = []
                 for review_element in review_elements:
                     try:
-                        # Create a comprehensive review object
-                        review = {
-                            'stars': None,
-                            'title': '',
-                            'text': '',
-                            'company_response': '',
-                            'reviewer': {
-                                'name': '',
-                                'location': '',
-                                'reviews_count': None,
-                            },
-                            'date': {
-                                'published': '',
-                                'experience': ''
-                            },
-                            'metadata': {
-                                'verified': False,
-                                'useful_votes': 0,
-                                'page_number': page_num,
-                                'source_url': current_url
-                            }
-                        }
+                        review = extract_review_data(review_element, page_num, page_url)
                         
-                        # Extract star rating
-                        try:
-                            # Try finding the rating from data attributes
-                            rating_element = review_element.find_element(By.CSS_SELECTOR, "[data-service-review-rating]")
-                            rating_text = rating_element.get_attribute("data-service-review-rating")
-                            star_rating = int(re.search(r'\d+', rating_text).group()) if rating_text else None
-                            review['stars'] = star_rating
-                        except:
-                            # Try finding from star images
-                            try:
-                                stars_element = review_element.find_element(By.CSS_SELECTOR, "div.star-rating")
-                                rating_text = stars_element.get_attribute("aria-label")
-                                star_rating = int(re.search(r'\d+', rating_text).group()) if rating_text else None
-                                review['stars'] = star_rating
-                            except:
-                                # Try one more way to find stars (look for the star images)
-                                try:
-                                    star_images = review_element.find_elements(By.CSS_SELECTOR, "img.star-rating__star")
-                                    if star_images:
-                                        filled_stars = [img for img in star_images if "filled" in img.get_attribute("alt").lower()]
-                                        review['stars'] = len(filled_stars)
-                                except:
-                                    pass
-                        
-                        # Skip if not in the requested star filter
-                        if star_filter and review['stars'] not in star_filter:
-                            reviews_by_page[page_num]['filtered'] += 1
+                        # Apply star filter if specified
+                        if star_filter and review.get('stars') not in star_filter:
                             continue
                             
-                        # Extract review title
-                        try:
-                            title_element = review_element.find_element(By.CSS_SELECTOR, "h2[data-service-review-title-typography], .review-content__title, .typography_heading-s")
-                            review['title'] = title_element.text.strip()
-                        except Exception as e:
-                            if CONFIG['verbose']:
-                                print(f"Error extracting title: {e}")
+                        if review and (review.get('text') or review.get('stars')):
+                            page_reviews.append(review)
                             
-                        # Extract review text
-                        try:
-                            review_content = review_element.find_element(By.CSS_SELECTOR, "p[data-service-review-text-typography], p.review-content__text, .typography_body-l")
-                            review['text'] = review_content.text.strip()
-                        except Exception as e:
-                            if CONFIG['verbose']:
-                                print(f"Error extracting review text: {e}")
-                        
-                        # Extract company response
-                        try:
-                            response_element = review_element.find_element(By.CSS_SELECTOR, "div.review-business-reply, div[data-service-review-business-response]")
-                            response_text = response_element.text.strip()
-                            # Clean up the response
-                            if "Reply from" in response_text:
-                                parts = response_text.split("Reply from", 1)
-                                reply_from = parts[1].split("\n", 1)[0].strip() if len(parts) > 1 else ""
-                                actual_response = parts[1].split("\n", 1)[1].strip() if len(parts) > 1 and "\n" in parts[1] else parts[1].strip()
-                                review['company_response'] = actual_response
-                                review['metadata']['company_reply_name'] = reply_from
-                            else:
-                                review['company_response'] = response_text
-                        except Exception as e:
-                            if CONFIG['verbose']:
-                                print(f"Error extracting company response: {e}")
-                        
-                        # Extract reviewer name and location
-                        try:
-                            reviewer_element = review_element.find_element(By.CSS_SELECTOR, "span.typography_heading-xxs, .consumer-information__name")
-                            review['reviewer']['name'] = reviewer_element.text.strip()
-                            
-                            try:
-                                location_element = review_element.find_element(By.CSS_SELECTOR, ".consumer-information__location")
-                                review['reviewer']['location'] = location_element.text.strip()
-                            except Exception as e:
-                                if CONFIG['verbose']:
-                                    print(f"Error extracting reviewer location: {e}")
-                                
-                            # Extract review count if available
-                            try:
-                                reviews_count_element = review_element.find_element(By.CSS_SELECTOR, ".consumer-information__review-count")
-                                count_text = reviews_count_element.text.strip()
-                                count_match = re.search(r'(\d+)', count_text)
-                                if count_match:
-                                    review['reviewer']['reviews_count'] = int(count_match.group(1))
-                            except Exception as e:
-                                if CONFIG['verbose']:
-                                    print(f"Error extracting reviewer count: {e}")
-                                
-                        except Exception as e:
-                            if CONFIG['verbose']:
-                                print(f"Error extracting reviewer info: {e}")
-                            review['reviewer']['name'] = "Anonymous"
-                            
-                        # Extract review date (published)
-                        try:
-                            date_element = review_element.find_element(By.CSS_SELECTOR, "time")
-                            review['date']['published'] = date_element.get_attribute("datetime")
-                        except Exception as e:
-                            # Try an alternative way to get the date
-                            try:
-                                # Look for date text in a more general way
-                                date_elements = review_element.find_elements(By.CSS_SELECTOR, "[data-service-review-date-time-ago]")
-                                if date_elements:
-                                    date_attr = date_elements[0].get_attribute("data-service-review-date-time-ago")
-                                    if date_attr:
-                                        # Date might be in a different format, but we'll store it as is
-                                        review['date']['published'] = date_attr
-                            except:
-                                pass
-                                
-                            if CONFIG['verbose']:
-                                print(f"Error extracting review date: {e}")
-                            
-                        # Extract experience date if available
-                        try:
-                            exp_date_elements = review_element.find_elements(By.CSS_SELECTOR, ".review-content-header__dates")
-                            for elem in exp_date_elements:
-                                if "Date of experience" in elem.text:
-                                    exp_date_text = elem.text.replace("Date of experience:", "").strip()
-                                    review['date']['experience'] = exp_date_text
-                                    break
-                        except Exception as e:
-                            if CONFIG['verbose']:
-                                print(f"Error extracting experience date: {e}")
-                        
-                        # Extract verification status
-                        try:
-                            verified_elements = review_element.find_elements(By.CSS_SELECTOR, ".review-content-header__verification")
-                            review['metadata']['verified'] = len(verified_elements) > 0 and "verified" in verified_elements[0].text.lower()
-                        except Exception as e:
-                            if CONFIG['verbose']:
-                                print(f"Error extracting verification status: {e}")
-                            
-                        # Extract useful/helpful votes
-                        try:
-                            votes_elements = review_element.find_elements(By.CSS_SELECTOR, ".useful-count")
-                            if votes_elements:
-                                votes_text = votes_elements[0].text.strip()
-                                votes_match = re.search(r'(\d+)', votes_text)
-                                if votes_match:
-                                    review['metadata']['useful_votes'] = int(votes_match.group(1))
-                        except Exception as e:
-                            if CONFIG['verbose']:
-                                print(f"Error extracting useful votes: {e}")
-                            
-                        # Extract any tags/categories
-                        try:
-                            tags_elements = review_element.find_elements(By.CSS_SELECTOR, ".review-tag")
-                            if tags_elements:
-                                review['metadata']['tags'] = [tag.text.strip() for tag in tags_elements]
-                        except Exception as e:
-                            if CONFIG['verbose']:
-                                print(f"Error extracting tags: {e}")
-                        
-                        # Only add reviews with text or a star rating
-                        if review['text'] or review['stars']:
-                            all_reviews.append(review)
-                            reviews_by_page[page_num]['extracted'] += 1
-                            if CONFIG['verbose']:
-                                print(f"Extracted review: {review['stars']} stars, {len(review['text'])} chars")
-                        else:
-                            reviews_by_page[page_num]['filtered'] += 1
-                            if CONFIG['verbose']:
-                                print(f"Skipping review - no text or star rating")
-                    
                     except Exception as e:
-                        print(f"Error extracting review data: {e}")
-                        reviews_by_page[page_num]['errors'] += 1
+                        logger.warning(f"⚠️  Error extracting review: {e}")
                 
-                # Report page stats
-                print(f"Page {page_num} summary: found {reviews_by_page[page_num]['raw_elements']} elements, "
-                      f"extracted {reviews_by_page[page_num]['extracted']} reviews, "
-                      f"filtered {reviews_by_page[page_num]['filtered']}, "
-                      f"errors {reviews_by_page[page_num]['errors']}")
+                all_reviews.extend(page_reviews)
+                logger.info(f"✅ Extracted {len(page_reviews)} reviews from page {page_num}")
                 
-                # If we got no reviews on this page (but found review elements), something's wrong
-                if reviews_by_page[page_num]['extracted'] == 0 and reviews_by_page[page_num]['raw_elements'] > 0:
-                    print("WARNING: Found review elements but couldn't extract any valid reviews.")
-                    if page_num == 1:
-                        print("This is the first page, so there might be a problem with the page structure.")
-                        print("Check the HTML content in debug_page.html")
-                
-                # If this is the last page, break out
-                if last_page_reached:
-                    break
+                # Check if we've reached the end
+                if len(review_elements) < CONFIG['reviews_per_page']:
+                    logger.info(f"📄 Reached last page (fewer reviews than expected)")
+                    last_page_reached = True
                 
             except Exception as e:
-                print(f"Error finding reviews: {e}")
-                consecutive_empty_pages += 1
-                if consecutive_empty_pages >= CONFIG['empty_pages_before_stop']:
-                    print(f"Stopping after {consecutive_empty_pages} consecutive error pages")
-                    break
-                page_num += 1
-                continue
+                logger.error(f"❌ Error processing page {page_num}: {e}")
+                break
             
-            # Move to the next page
+            # Move to next page with respectful delay
             page_num += 1
-            # print(f"Moving to page {page_num}")
-            time.sleep(CONFIG['page_delay'])  # Delay between pages to be polite
+            
+            if not last_page_reached:
+                logger.info(f"⏳ Respectful delay: {CONFIG['page_delay']} seconds before next page")
+                time.sleep(CONFIG['page_delay'])
     
     finally:
-        # Clean up
         driver.quit()
+        logger.info("🔄 Browser session closed")
     
-    # Final summary
-    print(f"\n--- SCRAPING SUMMARY ---")
-    print(f"Total pages processed: {len(reviews_by_page)}")
-    print(f"Total reviews extracted: {len(all_reviews)}")
+    # Final summary with compliance notes
+    logger.info(f"\n📊 SCRAPING SUMMARY")
+    logger.info(f"   Pages processed: {page_num - 1}")
+    logger.info(f"   Reviews extracted: {len(all_reviews)}")
+    logger.info(f"   Total delay time: {(page_num - 1) * CONFIG['page_delay']} seconds")
+    logger.info(f"   Average delay: {CONFIG['page_delay']} seconds per page")
     
-    # Calculate what percentage of the claimed total we extracted
-    if total_reviews > 0:
-        percentage = (len(all_reviews) / total_reviews) * 100
-        print(f"Extracted {percentage:.1f}% of the claimed {total_reviews} total reviews")
-        if percentage < 90:
-            print("NOTE: The claimed total may include reviews that are not publicly accessible")
-            print("      Trustpilot may archive older reviews or filter some based on their criteria")
-    
-    # Calculate per-page statistics
-    for page, stats in reviews_by_page.items():
-        if stats['raw_elements'] > 0:
-            success_rate = (stats['extracted'] / stats['raw_elements']) * 100
-            print(f"Page {page}: {success_rate:.1f}% extraction rate ({stats['extracted']}/{stats['raw_elements']})")
-    
-    if estimated_total_pages > 0:
-        expected_reviews = estimated_total_pages * CONFIG['reviews_per_page']
-        coverage_percentage = (len(all_reviews) / expected_reviews) * 100
-        print(f"Coverage: {coverage_percentage:.1f}% of expected reviews (estimated {expected_reviews} reviews)")
-    
-    raw_elements_total = sum(page['raw_elements'] for page in reviews_by_page.values())
-    filtered_total = sum(page['filtered'] for page in reviews_by_page.values())
-    errors_total = sum(page['errors'] for page in reviews_by_page.values())
-    
-    print(f"Total review elements found: {raw_elements_total}")
-    print(f"Total reviews filtered out: {filtered_total}")
-    print(f"Total extraction errors: {errors_total}")
-    
-    if len(all_reviews) < raw_elements_total - filtered_total:
-        print(f"WARNING: Expected {raw_elements_total - filtered_total} reviews but only extracted {len(all_reviews)}")
-        print("Some reviews may have failed to extract without raising errors.")
+    if total_reviews and len(all_reviews) < total_reviews * 0.1:
+        logger.warning("⚠️  Low extraction rate may indicate blocking or rate limiting")
     
     return all_reviews
+
+def extract_review_data(review_element, page_num, page_url):
+    """Extract data from a single review element"""
+    review = {
+        'stars': None,
+        'title': '',
+        'text': '',
+        'company_response': '',
+        'reviewer': {
+            'name': '',
+            'location': '',
+            'reviews_count': None,
+        },
+        'date': {
+            'published': '',
+            'experience': ''
+        },
+        'metadata': {
+            'verified': False,
+            'useful_votes': 0,
+            'page_number': page_num,
+            'source_url': page_url,
+            'extracted_timestamp': time.strftime('%Y-%m-%dT%H:%M:%S'),
+            'extraction_method': 'selenium'
+        }
+    }
+    
+    # Extract star rating
+    try:
+        rating_element = review_element.find_element(By.CSS_SELECTOR, "[data-service-review-rating]")
+        rating_text = rating_element.get_attribute("data-service-review-rating")
+        star_rating = int(re.search(r'\d+', rating_text).group()) if rating_text else None
+        review['stars'] = star_rating
+    except:
+        try:
+            stars_element = review_element.find_element(By.CSS_SELECTOR, "div.star-rating")
+            rating_text = stars_element.get_attribute("aria-label")
+            star_rating = int(re.search(r'\d+', rating_text).group()) if rating_text else None
+            review['stars'] = star_rating
+        except:
+            pass
+    
+    # Extract review title
+    try:
+        title_element = review_element.find_element(By.CSS_SELECTOR, "h2[data-service-review-title-typography], .review-content__title, .typography_heading-s")
+        review['title'] = title_element.text.strip()
+    except:
+        pass
+    
+    # Extract review text
+    try:
+        review_content = review_element.find_element(By.CSS_SELECTOR, "p[data-service-review-text-typography], p.review-content__text, .typography_body-l")
+        review['text'] = review_content.text.strip()
+    except:
+        pass
+    
+    # Extract reviewer name
+    try:
+        reviewer_element = review_element.find_element(By.CSS_SELECTOR, "span.typography_heading-xxs, .consumer-information__name")
+        review['reviewer']['name'] = reviewer_element.text.strip()
+    except:
+        review['reviewer']['name'] = "Anonymous"
+    
+    # Extract review date
+    try:
+        date_element = review_element.find_element(By.CSS_SELECTOR, "time")
+        review['date']['published'] = date_element.get_attribute("datetime")
+    except:
+        pass
+    
+    return review
 
 def get_reviews(url, star_filter=None, max_pages=None):
     """Legacy function that uses requests+BeautifulSoup. Now we use Selenium."""
@@ -627,8 +542,11 @@ def save_reviews_csv(reviews, filename):
     print(f"Saved {len(reviews)} reviews to {filename}")
 
 def parse_arguments():
-    """Parse command line arguments"""
-    parser = argparse.ArgumentParser(description='Scrape reviews from Trustpilot')
+    """Parse command line arguments with compliance options"""
+    parser = argparse.ArgumentParser(
+        description='Scrape reviews from Trustpilot (⚠️  LEGAL RISKS INVOLVED)',
+        epilog='⚠️  WARNING: This tool may violate Trustpilot\'s Terms of Service. Use at your own risk.'
+    )
     
     # Required arguments
     parser.add_argument('url', help='URL of the Trustpilot reviews page')
@@ -642,8 +560,13 @@ def parse_arguments():
                         help='Filter by star ratings (e.g., -s 1 4 5 for 1, 4, and 5 star reviews)')
     parser.add_argument('-p', '--max-pages', type=int,
                         help='Maximum number of pages to scrape (default: all available pages)')
-    parser.add_argument('--pretty', action='store_true',
-                        help='Output pretty-printed JSON (default for JSON output)')
+    
+    # Compliance options
+    compliance_group = parser.add_argument_group('Compliance Options (⚠️  USE WITH CAUTION)')
+    compliance_group.add_argument('--skip-robots-check', action='store_true',
+                                help='Skip robots.txt compliance check (NOT RECOMMENDED)')
+    compliance_group.add_argument('--skip-legal-warning', action='store_true',
+                                help='Skip legal warning prompt (NOT RECOMMENDED)')
     
     # Debug configuration arguments
     debug_group = parser.add_argument_group('Debug Options')
@@ -655,13 +578,13 @@ def parse_arguments():
     # Performance tuning arguments
     perf_group = parser.add_argument_group('Performance Options')
     perf_group.add_argument('--page-load-timeout', type=int,
-                           help='Timeout for page loading in seconds (default: 15)')
+                           help='Timeout for page loading in seconds (default: 30)')
     perf_group.add_argument('--retry-delay', type=int,
-                           help='Delay between retries in seconds (default: 2)')
+                           help='Delay between retries in seconds (minimum: 60)')
     perf_group.add_argument('--page-delay', type=int,
-                           help='Delay between pages in seconds (default: 2)')
+                           help='Delay between pages in seconds (minimum: 30)')
     perf_group.add_argument('--max-retries', type=int,
-                           help='Maximum number of retries per page (default: 3)')
+                           help='Maximum number of retries per page (maximum: 3)')
     
     return parser.parse_args()
 
