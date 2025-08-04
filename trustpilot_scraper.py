@@ -17,14 +17,18 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 # Set up logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('logs/scraper.log'),
-        logging.StreamHandler()
-    ]
-)
+def setup_logging():
+    """Setup logging with proper directory creation"""
+    os.makedirs('logs', exist_ok=True)
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler('logs/scraper.log'),
+            logging.StreamHandler()
+        ]
+    )
+
 logger = logging.getLogger(__name__)
 
 # LEGAL COMPLIANCE WARNING
@@ -590,6 +594,9 @@ def parse_arguments():
 
 def main():
     """Main function"""
+    # Setup logging first
+    setup_logging()
+    
     args = parse_arguments()
     
     # Update CONFIG with command line arguments
