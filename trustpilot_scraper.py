@@ -6,12 +6,39 @@ import re
 import csv
 import argparse
 import os
+import logging
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
+
+# Set up logging
+def setup_logging():
+    """Set up logging configuration"""
+    # Create logs directory if it doesn't exist
+    os.makedirs('logs', exist_ok=True)
+    
+    # Configure logger
+    logger = logging.getLogger('trustpilot_scraper')
+    logger.setLevel(logging.INFO)
+    
+    # Create file handler
+    file_handler = logging.FileHandler('logs/scraper.log')
+    file_handler.setLevel(logging.INFO)
+    
+    # Create formatter
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    file_handler.setFormatter(formatter)
+    
+    # Add handler to logger
+    logger.addHandler(file_handler)
+    
+    return logger
+
+# Initialize logger
+logger = setup_logging()
 
 # Configuration parameters
 CONFIG = {
@@ -114,11 +141,11 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                         if matches:
                             # Remove commas and convert to int
                             total_reviews = int(matches.group(1).replace(',', ''))
-                            print(f"Found total reviews from main page: {total_reviews}")
+                            logger.info(f"Found total reviews from main page: {total_reviews}")
                             break
                 except Exception as e:
                     if CONFIG['verbose']:
-                        print(f"Error parsing review count text: {e}")
+                        logger.debug(f"Error parsing review count text: {e}")
             
             # If not found in text, look for specific attribute
             if total_reviews == 0:
@@ -128,18 +155,18 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                         data_count = elem.get_attribute("data-service-review-count")
                         if data_count and data_count.isdigit():
                             total_reviews = int(data_count)
-                            print(f"Found total reviews from data attribute: {total_reviews}")
+                            logger.info(f"Found total reviews from data attribute: {total_reviews}")
                             break
                 except Exception as e:
                     if CONFIG['verbose']:
-                        print(f"Error extracting review count from data attribute: {e}")
+                        logger.debug(f"Error extracting review count from data attribute: {e}")
                         
             if total_reviews:
                 # Calculate estimated pages based on reviews per page
                 estimated_total_pages = (total_reviews + CONFIG['reviews_per_page'] - 1) // CONFIG['reviews_per_page']
-                print(f"Found approximately {total_reviews} total reviews across ~{estimated_total_pages} pages")
+                logger.info(f"Found approximately {total_reviews} total reviews across ~{estimated_total_pages} pages")
             else:
-                print("Couldn't determine total review count, will iterate until no more pages are found")
+                logger.info("Couldn't determine total review count, will iterate until no more pages are found")
                 
             # Try to find the maximum page number from pagination
             try:
@@ -153,29 +180,29 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                             max_page = page_num_int
                 
                 if max_page > 1:
-                    print(f"Detected {max_page} pages in pagination")
+                    logger.info(f"Detected {max_page} pages in pagination")
                     highest_page_seen = max_page
                     
                     # If we found pagination but couldn't determine total reviews, estimate based on highest page seen
                     if total_reviews == 0:
                         estimated_total_pages = max_page
                         total_reviews = estimated_total_pages * CONFIG['reviews_per_page']
-                        print(f"Estimating {total_reviews} total reviews from highest visible page number ({max_page})")
+                        logger.info(f"Estimating {total_reviews} total reviews from highest visible page number ({max_page})")
             except Exception as e:
-                print(f"Error detecting max pages from pagination: {e}")
+                logger.error(f"Error detecting max pages from pagination: {e}")
                 
         except Exception as e:
-            print(f"Error determining total pages: {e}")
+            logger.error(f"Error determining total pages: {e}")
         
         # Now iterate through all pages with direct URL access
         while not last_page_reached:
             if max_pages and page_num > max_pages:
-                print(f"Reached maximum requested page limit ({max_pages})")
+                logger.info(f"Reached maximum requested page limit ({max_pages})")
                 break
             
             # Check if the page is a 404 by looking at the URL
             if page_num > 1 and "page=" + str(page_num - 1) in driver.current_url and "404" in driver.title:
-                print(f"Detected 404 page after page {page_num-1}. Stopping scraping.")
+                logger.warning(f"Detected 404 page after page {page_num-1}. Stopping scraping.")
                 break
             
             # Construct page URL - ensure we're using the right format
@@ -189,7 +216,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
             else:
                 page_url = f"{base_url}?page={page_num}"
                 
-            print(f"Scraping page {page_num}: {page_url}")
+            logger.info(f"Scraping page {page_num}: {page_url}")
             
             # Load the page with retry logic
             retry_count = 0
@@ -201,7 +228,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                     
                     # Check for 404 page
                     if "404" in driver.title or "Whoops" in driver.title:
-                        print(f"Reached a 404 error page. Stopping at page {page_num-1}.")
+                        logger.warning(f"Reached a 404 error page. Stopping at page {page_num-1}.")
                         last_page_reached = True
                         break
                     
@@ -220,16 +247,16 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                         except TimeoutException:
                             # Check for 404 page again after timeout
                             if "404" in driver.title or "Whoops" in driver.title:
-                                print(f"Reached a 404 error page after timeout. Stopping at page {page_num-1}.")
+                                logger.warning(f"Reached a 404 error page after timeout. Stopping at page {page_num-1}.")
                                 last_page_reached = True
                                 break
                                 
-                            print(f"Timeout waiting for page {page_num} to load, retrying...")
+                            logger.warning(f"Timeout waiting for page {page_num} to load, retrying...")
                             retry_count += 1
                             time.sleep(CONFIG['retry_delay'])  # Wait before retry
                 
                 except Exception as e:
-                    print(f"Error loading page {page_num}: {e}")
+                    logger.error(f"Error loading page {page_num}: {e}")
                     retry_count += 1
                     time.sleep(CONFIG['retry_delay'])  # Wait before retry
             
@@ -238,10 +265,10 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                 break
                 
             if not page_loaded:
-                print(f"Failed to load page {page_num} after {max_retries} attempts")
+                logger.error(f"Failed to load page {page_num} after {max_retries} attempts")
                 consecutive_empty_pages += 1
                 if consecutive_empty_pages >= CONFIG['empty_pages_before_stop']:
-                    print(f"Stopping after {consecutive_empty_pages} consecutive failed page loads")
+                    logger.warning(f"Stopping after {consecutive_empty_pages} consecutive failed page loads")
                     break
                 page_num += 1
                 continue
@@ -250,19 +277,19 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
             if page_num == 1 and CONFIG['save_debug_html']:
                 with open(CONFIG['debug_html_path'], "w", encoding="utf-8") as f:
                     f.write(driver.page_source)
-                print(f"Saved first page HTML to {CONFIG['debug_html_path']} for inspection")
+                logger.info(f"Saved first page HTML to {CONFIG['debug_html_path']} for inspection")
             
             # Check for "no reviews found" message that indicates we've gone too far
             try:
                 no_results = driver.find_elements(By.CSS_SELECTOR, 
                                               "p.typography_body-l:contains('No reviews matching'), div.noResultsContainer, div:contains('No reviews found')")
                 if no_results:
-                    print(f"Found 'No reviews' message on page {page_num}")
+                    logger.info(f"Found 'No reviews' message on page {page_num}")
                     last_page_reached = True
                     break
             except Exception as e:
                 if CONFIG['verbose']:
-                    print(f"Error checking for no results: {e}")
+                    logger.debug(f"Error checking for no results: {e}")
             
             # Detect if we've been redirected to another page (indicating we've gone beyond the last page)
             current_url = driver.current_url
@@ -270,7 +297,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
             if url_page_match:
                 actual_page = int(url_page_match.group(1))
                 if actual_page != page_num:
-                    print(f"Requested page {page_num} but got redirected to page {actual_page} - we've likely gone beyond the last page")
+                    logger.info(f"Requested page {page_num} but got redirected to page {actual_page} - we've likely gone beyond the last page")
                     last_page_reached = True
                     break
                 
@@ -280,24 +307,24 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                 review_elements = driver.find_elements(By.TAG_NAME, "article")
                 
                 if not review_elements:
-                    print("No reviews found with article tag. Trying alternative selectors...")
+                    logger.debug("No reviews found with article tag. Trying alternative selectors...")
                     review_elements = driver.find_elements(By.CSS_SELECTOR, "div.styles_reviewCard__hcAvl")
                 
                 if not review_elements:
                     review_elements = driver.find_elements(By.CSS_SELECTOR, "div.review-card")
                 
                 if not review_elements:
-                    print("No reviews found on this page. This may be the last page.")
+                    logger.info("No reviews found on this page. This may be the last page.")
                     last_page_reached = True
                     break
                 
                 # If we're on a page that has fewer reviews than expected, we're likely on the last page
                 if len(review_elements) < CONFIG['reviews_per_page'] and page_num > 1:
-                    print(f"Found only {len(review_elements)} reviews on page {page_num} (fewer than standard {CONFIG['reviews_per_page']})")
-                    print(f"This indicates we're on the last page of reviews")
+                    logger.info(f"Found only {len(review_elements)} reviews on page {page_num} (fewer than standard {CONFIG['reviews_per_page']})")
+                    logger.info(f"This indicates we're on the last page of reviews")
                     last_page_reached = True
                 
-                print(f"Found {len(review_elements)} review elements on page {page_num}")
+                logger.info(f"Found {len(review_elements)} review elements on page {page_num}")
                 
                 # Initialize page stats
                 reviews_by_page[page_num] = {
@@ -369,7 +396,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                             review['title'] = title_element.text.strip()
                         except Exception as e:
                             if CONFIG['verbose']:
-                                print(f"Error extracting title: {e}")
+                                logger.debug(f"Error extracting title: {e}")
                             
                         # Extract review text
                         try:
@@ -377,7 +404,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                             review['text'] = review_content.text.strip()
                         except Exception as e:
                             if CONFIG['verbose']:
-                                print(f"Error extracting review text: {e}")
+                                logger.debug(f"Error extracting review text: {e}")
                         
                         # Extract company response
                         try:
@@ -394,7 +421,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                                 review['company_response'] = response_text
                         except Exception as e:
                             if CONFIG['verbose']:
-                                print(f"Error extracting company response: {e}")
+                                logger.debug(f"Error extracting company response: {e}")
                         
                         # Extract reviewer name and location
                         try:
@@ -406,7 +433,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                                 review['reviewer']['location'] = location_element.text.strip()
                             except Exception as e:
                                 if CONFIG['verbose']:
-                                    print(f"Error extracting reviewer location: {e}")
+                                    logger.debug(f"Error extracting reviewer location: {e}")
                                 
                             # Extract review count if available
                             try:
@@ -417,11 +444,11 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                                     review['reviewer']['reviews_count'] = int(count_match.group(1))
                             except Exception as e:
                                 if CONFIG['verbose']:
-                                    print(f"Error extracting reviewer count: {e}")
+                                    logger.debug(f"Error extracting reviewer count: {e}")
                                 
                         except Exception as e:
                             if CONFIG['verbose']:
-                                print(f"Error extracting reviewer info: {e}")
+                                logger.debug(f"Error extracting reviewer info: {e}")
                             review['reviewer']['name'] = "Anonymous"
                             
                         # Extract review date (published)
@@ -442,7 +469,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                                 pass
                                 
                             if CONFIG['verbose']:
-                                print(f"Error extracting review date: {e}")
+                                logger.debug(f"Error extracting review date: {e}")
                             
                         # Extract experience date if available
                         try:
@@ -454,7 +481,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                                     break
                         except Exception as e:
                             if CONFIG['verbose']:
-                                print(f"Error extracting experience date: {e}")
+                                logger.debug(f"Error extracting experience date: {e}")
                         
                         # Extract verification status
                         try:
@@ -462,7 +489,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                             review['metadata']['verified'] = len(verified_elements) > 0 and "verified" in verified_elements[0].text.lower()
                         except Exception as e:
                             if CONFIG['verbose']:
-                                print(f"Error extracting verification status: {e}")
+                                logger.debug(f"Error extracting verification status: {e}")
                             
                         # Extract useful/helpful votes
                         try:
@@ -474,7 +501,7 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                                     review['metadata']['useful_votes'] = int(votes_match.group(1))
                         except Exception as e:
                             if CONFIG['verbose']:
-                                print(f"Error extracting useful votes: {e}")
+                                logger.debug(f"Error extracting useful votes: {e}")
                             
                         # Extract any tags/categories
                         try:
@@ -483,45 +510,45 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
                                 review['metadata']['tags'] = [tag.text.strip() for tag in tags_elements]
                         except Exception as e:
                             if CONFIG['verbose']:
-                                print(f"Error extracting tags: {e}")
+                                logger.debug(f"Error extracting tags: {e}")
                         
                         # Only add reviews with text or a star rating
                         if review['text'] or review['stars']:
                             page_reviews.append(review) # Append to page_reviews
                             reviews_by_page[page_num]['extracted'] += 1
                             if CONFIG['verbose']:
-                                print(f"Extracted review: {review['stars']} stars, {len(review['text'])} chars")
+                                logger.debug(f"Extracted review: {review['stars']} stars, {len(review['text'])} chars")
                         else:
                             reviews_by_page[page_num]['filtered'] += 1
                             if CONFIG['verbose']:
-                                print(f"Skipping review - no text or star rating")
+                                logger.debug(f"Skipping review - no text or star rating")
                     
                     except Exception as e:
-                        print(f"Error extracting review data: {e}")
+                        logger.error(f"Error extracting review data: {e}")
                         reviews_by_page[page_num]['errors'] += 1
                 
                 # Report page stats
-                print(f"Page {page_num} summary: found {reviews_by_page[page_num]['raw_elements']} elements, "
+                logger.info(f"Page {page_num} summary: found {reviews_by_page[page_num]['raw_elements']} elements, "
                       f"extracted {reviews_by_page[page_num]['extracted']} reviews, "
                       f"filtered {reviews_by_page[page_num]['filtered']}, "
                       f"errors {reviews_by_page[page_num]['errors']}")
                 
                 # If we got no reviews on this page (but found review elements), something's wrong
                 if reviews_by_page[page_num]['extracted'] == 0 and reviews_by_page[page_num]['raw_elements'] > 0:
-                    print("WARNING: Found review elements but couldn't extract any valid reviews.")
+                    logger.warning("WARNING: Found review elements but couldn't extract any valid reviews.")
                     if page_num == 1:
-                        print("This is the first page, so there might be a problem with the page structure.")
-                        print("Check the HTML content in debug_page.html")
+                        logger.warning("This is the first page, so there might be a problem with the page structure.")
+                        logger.warning("Check the HTML content in debug_page.html")
                 
                 # If this is the last page, break out
                 if last_page_reached:
                     break
                 
             except Exception as e:
-                print(f"Error finding reviews: {e}")
+                logger.error(f"Error finding reviews: {e}")
                 consecutive_empty_pages += 1
                 if consecutive_empty_pages >= CONFIG['empty_pages_before_stop']:
-                    print(f"Stopping after {consecutive_empty_pages} consecutive error pages")
+                    logger.warning(f"Stopping after {consecutive_empty_pages} consecutive error pages")
                     break
                 page_num += 1
                 continue
@@ -545,46 +572,46 @@ def get_reviews_with_selenium(url, star_filter=None, max_pages=None, incremental
         driver.quit()
     
     # Final summary
-    print(f"\n--- SCRAPING SUMMARY ---")
-    print(f"Total pages processed: {len(reviews_by_page)}")
-    print(f"Total reviews extracted: {len(all_reviews)}")
+    logger.info(f"\n--- SCRAPING SUMMARY ---")
+    logger.info(f"Total pages processed: {len(reviews_by_page)}")
+    logger.info(f"Total reviews extracted: {len(all_reviews)}")
     
     # Calculate what percentage of the claimed total we extracted
     if total_reviews > 0:
         percentage = (len(all_reviews) / total_reviews) * 100
-        print(f"Extracted {percentage:.1f}% of the claimed {total_reviews} total reviews")
+        logger.info(f"Extracted {percentage:.1f}% of the claimed {total_reviews} total reviews")
         if percentage < 90:
-            print("NOTE: The claimed total may include reviews that are not publicly accessible")
-            print("      Trustpilot may archive older reviews or filter some based on their criteria")
+            logger.info("NOTE: The claimed total may include reviews that are not publicly accessible")
+            logger.info("      Trustpilot may archive older reviews or filter some based on their criteria")
     
     # Calculate per-page statistics
     for page, stats in reviews_by_page.items():
         if stats['raw_elements'] > 0:
             success_rate = (stats['extracted'] / stats['raw_elements']) * 100
-            print(f"Page {page}: {success_rate:.1f}% extraction rate ({stats['extracted']}/{stats['raw_elements']})")
+            logger.info(f"Page {page}: {success_rate:.1f}% extraction rate ({stats['extracted']}/{stats['raw_elements']})")
     
     if estimated_total_pages > 0:
         expected_reviews = estimated_total_pages * CONFIG['reviews_per_page']
         coverage_percentage = (len(all_reviews) / expected_reviews) * 100
-        print(f"Coverage: {coverage_percentage:.1f}% of expected reviews (estimated {expected_reviews} reviews)")
+        logger.info(f"Coverage: {coverage_percentage:.1f}% of expected reviews (estimated {expected_reviews} reviews)")
     
     raw_elements_total = sum(page['raw_elements'] for page in reviews_by_page.values())
     filtered_total = sum(page['filtered'] for page in reviews_by_page.values())
     errors_total = sum(page['errors'] for page in reviews_by_page.values())
     
-    print(f"Total review elements found: {raw_elements_total}")
-    print(f"Total reviews filtered out: {filtered_total}")
-    print(f"Total extraction errors: {errors_total}")
+    logger.info(f"Total review elements found: {raw_elements_total}")
+    logger.info(f"Total reviews filtered out: {filtered_total}")
+    logger.info(f"Total extraction errors: {errors_total}")
     
     if len(all_reviews) < raw_elements_total - filtered_total:
-        print(f"WARNING: Expected {raw_elements_total - filtered_total} reviews but only extracted {len(all_reviews)}")
-        print("Some reviews may have failed to extract without raising errors.")
+        logger.warning(f"WARNING: Expected {raw_elements_total - filtered_total} reviews but only extracted {len(all_reviews)}")
+        logger.warning("Some reviews may have failed to extract without raising errors.")
     
     return all_reviews
 
 def get_reviews(url, star_filter=None, max_pages=None):
     """Legacy function that uses requests+BeautifulSoup. Now we use Selenium."""
-    # print("Using Selenium...")
+    # logger.debug("Using Selenium...")
     return get_reviews_with_selenium(url, star_filter, max_pages)
 
 def save_reviews_json(reviews, filename):
@@ -598,7 +625,7 @@ def save_reviews_json(reviews, filename):
             },
             'reviews': reviews
         }, f, ensure_ascii=False, indent=2)
-    print(f"Saved {len(reviews)} reviews to {filename}")
+    logger.info(f"Saved {len(reviews)} reviews to {filename}")
 
 def save_reviews_csv(reviews, filename):
     """Save reviews to a CSV file with flattened structure"""
@@ -634,7 +661,7 @@ def save_reviews_csv(reviews, filename):
             }
             writer.writerow(flat_review)
     
-    print(f"Saved {len(reviews)} reviews to {filename}")
+    logger.info(f"Saved {len(reviews)} reviews to {filename}")
 
 def parse_arguments():
     """Parse command line arguments"""
@@ -750,7 +777,7 @@ def main():
     else:  # csv
         save_reviews_csv(reviews, output_file)
     
-    print(f"Extracted {len(reviews)} reviews in total")
+    logger.info(f"Extracted {len(reviews)} reviews in total")
 
 if __name__ == "__main__":
     main() 
